@@ -31,9 +31,9 @@ jobs:
         uses: 'google-github-actions/upload-cloud-storage@v0'
         with:
           path: 'build/libs/EvieClient.jar'
-          destination: 'teamevieclient.appspot.com/1.8/EvieClient.jar'
+          destination: 'teamevieclient.appspot.com/1.8/'
       - id: 'upload-json'
         uses: 'google-github-actions/upload-cloud-storage@v0'
         with:
           path: 'build/libs/EvieClient.json'
-          destination: 'teamevieclient.appspot.com/1.8/EvieClient.json'
+          destination: 'teamevieclient.appspot.com/1.8/'
