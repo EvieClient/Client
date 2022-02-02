@@ -21,7 +21,7 @@ apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'java'
 
-version = "1.0"
+version = ""
 group= "com.evieclient" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "EvieClient"
 
@@ -89,6 +89,10 @@ processResources {
     copy {
         from("src/main/resources")
         into("build/classes/main")
+    }
+    copy {
+        from("src/main/resources/version")
+        into("build/libs")
     }
 }
 
