@@ -23,8 +23,8 @@ jobs:
         with:
           name: archive-build
           path: build/libs
-      - name: Archive Build
-        run: zip -r latest.zip build/libs
+      - name: Zip Build
+        run: zip -r build/libs/latest.zip build/libs/.
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
         with:
