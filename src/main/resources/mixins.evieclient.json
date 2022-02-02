@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "com.evieclient.mixins",
+  "refmap": "mixins.evieclient.json",
+  "verbose": true,
+  "mixins": [
+    "client.MixinMinecraft",
+    "entity.MixinEntityPlayerSP",
+    "entity.MixinEntityPlayer",
+    "network.MixinNetHandlerPlayClient"
+  ]
+}

@@ -1,0 +1,20 @@
+
+
+package com.evieclient.events.impl.client;
+
+import com.evieclient.events.CancelableEvent;
+import lombok.Getter;
+import lombok.Setter;
+
+/** Fired when the client sends a message to the server.
+ * @author Nora Cos | Nora#0001
+ * @since 1.0.0 **/
+public class PlayerChatEvent extends CancelableEvent {
+
+    @Getter @Setter private String message;
+
+    /** @param chatMessage message being sent to the server **/
+    public PlayerChatEvent(String chatMessage) {
+        message = chatMessage;
+    }
+}
