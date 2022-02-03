@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 /** MixinBootstrap Events for EntityPlayerSP.class.
- * @author Nora Cos | Nora#0001
  * @since 1.0.0 **/
 @Mixin(EntityPlayerSP.class)
 public class MixinEntityPlayerSP {

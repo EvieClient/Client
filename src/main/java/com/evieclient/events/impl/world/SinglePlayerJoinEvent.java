@@ -7,7 +7,6 @@ import lombok.Getter;
 import net.minecraft.world.WorldSettings;
 
 /** Fired when player joins single player world.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class SinglePlayerJoinEvent extends Event {
 

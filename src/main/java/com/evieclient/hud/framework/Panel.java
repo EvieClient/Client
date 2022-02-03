@@ -7,7 +7,6 @@ import lombok.Getter;
 /**
  * Panels holds and scales all object.
  * <p>Location and scale can also be adjusted via this panel.</p>
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class Panel {
 

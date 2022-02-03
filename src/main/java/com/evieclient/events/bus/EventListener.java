@@ -10,7 +10,6 @@ import lombok.Setter;
 import java.lang.reflect.Method;
 
 /** Internal data class for storing event listener data.
- * @author Nora Cos | Nora#0001
  * @since 1.0.0 **/
 public class EventListener {
 

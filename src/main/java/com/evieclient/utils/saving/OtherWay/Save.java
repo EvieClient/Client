@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Saving booleans to a json (and other things prob)
  *
- * @author Pinkulu | pinkulu#6260 *
+ *
  */
 public class Save {
 

@@ -10,7 +10,6 @@ import lombok.Getter;
  * <p>The priority of a listener is set in the {@link EventSubscriber},
  * but it can be changed at any time with the {@code setPriorityOf}
  * method in {@link EventBus}.</p>
- * @author Nora Cos | Nora#0001
  * @since 1.0.0 **/
 public enum Priority {
 

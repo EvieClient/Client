@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.WorldRenderer;
 import java.awt.*;
 
 /** Draws a rectangle on screen.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class Rectangle extends GuiElement{
 

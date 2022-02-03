@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * The first parameter in methods annotated with this must be
  * a class that extends {@link Event}.
  * @see EventBus
- * @author Nora Cos | Nora#0001
+
  * @since 1.0.0 **/
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = ElementType.METHOD)

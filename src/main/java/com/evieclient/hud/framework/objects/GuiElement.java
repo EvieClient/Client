@@ -6,7 +6,6 @@ import com.evieclient.hud.framework.Panel;
 import lombok.Getter;
 
 /** Gui element class all objects extend
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public abstract class GuiElement {
 

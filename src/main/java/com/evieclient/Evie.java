@@ -1,14 +1,9 @@
 package com.evieclient;
 
 import com.evieclient.events.bus.EventBus;
-import com.evieclient.events.bus.EventSubscriber;
 import com.evieclient.modules.ModuleManager;
-import com.evieclient.events.impl.client.input.KeyPressedEvent;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
 import io.sentry.Sentry;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,8 +25,6 @@ public class Evie {
         Sentry.init(options -> {
             options.setDsn("https://24c61932d4a84df79726aee1615ae698@o1101223.ingest.sentry.io/6179220");
             options.setTracesSampleRate(1.0);
-            // When first trying Sentry it's good to see what the SDK is doing:
-            options.setDebug(true);
         });
 
         log("Starting Client!");

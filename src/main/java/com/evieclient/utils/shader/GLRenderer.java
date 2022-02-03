@@ -15,7 +15,6 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 /** Various functions to draw gui objects using GL11 and WorldRenderer.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class GLRenderer {
 

@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 /** Fired when the client sends a message to the server.
- * @author Nora Cos | Nora#0001
  * @since 1.0.0 **/
 public class PlayerChatEvent extends CancelableEvent {
 

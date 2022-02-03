@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** MixinBootstrap Events for Minecraft.class.
- * @author Icovid | Icovid#3888
+
  * @since 1.0.0 **/
 @Mixin(Minecraft.class) public class MixinMinecraft {
 
@@ -36,9 +36,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         Evie.INSTANCE.shutdown();
     }
 
-    /** Post {@link GameLoopEvent} every tick.
+    /**
+     * Post {@link GameLoopEvent} every tick.
+     *
      * @param callbackInfo unused
-     * @author Nora Cos | #Nora#0001 */
+     */
     @Inject(method = "runGameLoop", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;skipRenderWorld:Z", shift = At.Shift.AFTER))
     private void runGameLoop(CallbackInfo callbackInfo) {
         new GameLoopEvent().post();

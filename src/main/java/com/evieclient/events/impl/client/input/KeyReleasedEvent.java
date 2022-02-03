@@ -6,7 +6,6 @@ import com.evieclient.events.Event;
 import lombok.Getter;
 
 /** Fired when key is released.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class KeyReleasedEvent extends Event {
 

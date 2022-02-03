@@ -2,11 +2,9 @@
 
 package com.evieclient.mixins.network;
 
-import com.evieclient.Evie;
 import com.evieclient.events.impl.client.ActionBarEvent;
 import com.evieclient.events.impl.client.ChatReceivedEvent;
 import com.evieclient.events.impl.client.PluginMessageEvent;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.play.server.S02PacketChat;
 import net.minecraft.network.play.server.S3FPacketCustomPayload;
@@ -18,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.io.IOException;
 
 /** MixinBootstrap Events for MixinNetHandlerPlayClient.class.
- * @author Nora Cos | Nora#0001
  * @since 1.0.0 **/
 @Mixin(NetHandlerPlayClient.class)
 public class MixinNetHandlerPlayClient {

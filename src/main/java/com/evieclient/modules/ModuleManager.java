@@ -9,7 +9,6 @@ import com.evieclient.modules.impl.util.WindowedFullscreenModule;
 import java.util.ArrayList;
 
 /** Holds all modules and sets up module settings.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class ModuleManager {
 

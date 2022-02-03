@@ -10,7 +10,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 
 /** Module constructor for all mods.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class Module {
 

@@ -7,7 +7,6 @@ import lombok.Getter;
 import net.minecraft.client.audio.ISound;
 
 /** Fired sound is played on client.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class PlaySoundEvent extends CancelableEvent {
 

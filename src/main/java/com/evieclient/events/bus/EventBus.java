@@ -16,7 +16,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * The main implementation can be found in {@link Evie}
  * <p>You can register an object with the {@code post} method.</p>
  *
- * @author Nora Cos | Nora#0001
  * @since 1.0.0
  **/
 @SuppressWarnings({"UnstableApiUsage", "unchecked"})

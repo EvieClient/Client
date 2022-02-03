@@ -4,12 +4,10 @@ import com.evieclient.Evie;
 import com.evieclient.events.CancelableEvent;
 import lombok.Getter;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.IChatComponent;
 
 /**
  * Fired when the client receives a PluginMessage
  *
- * @author Tristan | tristan#0005
  **/
 public class PluginMessageEvent extends CancelableEvent {
 

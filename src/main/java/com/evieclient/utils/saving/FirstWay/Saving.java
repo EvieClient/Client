@@ -10,7 +10,6 @@ public class Saving {
   /**
    * Saving booleans to a json
    *
-   * @author Pinkulu | pinkulu#6260
    * @since v1.0.0 this will make a folder for each mod, and add a toggle.json in each folder (not
    *     sure if it will work as this is taken from my old client and will prob need some
    *     modifiying, cant test it out rn bc there arnt mods yet)

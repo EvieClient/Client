@@ -7,7 +7,6 @@ import lombok.Getter;
 import net.minecraft.client.multiplayer.WorldClient;
 
 /** Fired when player world is changed.
- * @author Icovid | Icovid#3888
  * @since 1.0.0 **/
 public class LoadWorldEvent extends Event {
 

@@ -8,7 +8,6 @@ import net.minecraft.util.IChatComponent;
 
 /** Fired when the client receives a chat packet and it is not an action bar packet.
  * <p>If you want the action bar, see the {@link ActionBarEvent} class.</p>
- * @author Nora Cos | Nora#0001
  * @since 1.0.0 **/
 public class ChatReceivedEvent extends CancelableEvent {
 

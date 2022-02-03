@@ -1,8 +1,8 @@
 package com.evieclient.utils;
 
 import io.sentry.Sentry;
-import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /** Loads shaders.
- * @author Basilicous | Basilicous#7866
  * @since 1.0.0 **/
 
 public abstract class ShaderProgram {
