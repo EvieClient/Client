@@ -6,6 +6,7 @@ import com.evieclient.Evie;
 import com.evieclient.events.impl.client.ActionBarEvent;
 import com.evieclient.events.impl.client.ChatReceivedEvent;
 import com.evieclient.events.impl.client.PluginMessageEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.play.server.S02PacketChat;
 import net.minecraft.network.play.server.S3FPacketCustomPayload;
@@ -13,6 +14,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.io.IOException;
 
 /** MixinBootstrap Events for MixinNetHandlerPlayClient.class.
  * @author Nora Cos | Nora#0001
@@ -36,10 +39,9 @@ public class MixinNetHandlerPlayClient {
 
     // on PluginMessageRecive Event make an @Inject to this method
     @Inject(method = "handleCustomPayload", at = @At("HEAD"), cancellable = true)
-    private void onPluginMessageRecive(S3FPacketCustomPayload merchantrecipelist, CallbackInfo ci) {
-        Evie.log("PluginMessageRecive");
+    private void onPluginMessageRecive(S3FPacketCustomPayload payload, CallbackInfo ci) throws IOException {
         PluginMessageEvent event;
-        event = new PluginMessageEvent(merchantrecipelist.getChannelName(), merchantrecipelist.getBufferData());
+        event = new PluginMessageEvent(payload.getChannelName(), payload.getBufferData());
         event.post();
         if (event.isCanceled()) {
             ci.cancel();

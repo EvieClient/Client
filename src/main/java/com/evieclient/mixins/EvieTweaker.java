@@ -12,9 +12,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Tweaker used to start mixin bootstrap - called in launch arguments.
- * @author Nora | Nora#0001
- * @since 1.0.0 **/
 public class EvieTweaker implements ITweaker {
 
     // List of launch arguments for getLaunchArguments[]

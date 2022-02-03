@@ -45,7 +45,7 @@ public class DiscordRPModule extends Module {
     public void onWorldLoad (LoadWorldEvent event) {
         if (!Minecraft.getMinecraft().isSingleplayer())
             this.updateRP("Multiplayer", "Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP, "", "");
-        else this.updateRP("Singleplayer", "vibing alone :(", "", "");
+        else this.updateRP("Singleplayer", "alone...", "", "");
     }
 
     @EventSubscriber public void onTick (GameLoopEvent event) {

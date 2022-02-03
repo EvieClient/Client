@@ -21,7 +21,6 @@ public class WindowedFullscreenModule extends Module {
 
     @Override
     public void onEnabled() {
-        Evie.log("testing123?");
     }
 
     @EventSubscriber

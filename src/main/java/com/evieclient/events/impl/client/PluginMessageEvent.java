@@ -20,12 +20,13 @@ public class PluginMessageEvent extends CancelableEvent {
     private final PacketBuffer data;
 
     /**
-     * @param chatComponent chat component from the packet
+     * @param channel The channel the message was sent on
+     * @param packet The data sent
      **/
-    public PluginMessageEvent(String channel, PacketBuffer chatComponent) {
+    public PluginMessageEvent(String channel, PacketBuffer packet) {
         this.channel = channel;
-        this.data = chatComponent;
+        this.data = packet;
 
-        Evie.log("Found plugin message: " + channel);
+        Evie.log("Found plugin message: " + channel + " with msg of " + packet.toString());
     }
 }

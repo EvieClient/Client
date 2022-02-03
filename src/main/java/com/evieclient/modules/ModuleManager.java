@@ -2,6 +2,7 @@
 
 package com.evieclient.modules;
 
+import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.modules.impl.util.DiscordRPModule;
 import com.evieclient.modules.impl.util.WindowedFullscreenModule;
 
@@ -17,12 +18,14 @@ public class ModuleManager {
 
     // Public module instances.
     public final DiscordRPModule discordRPModule = new DiscordRPModule();
+    public final AccountsModule accountsModule = new AccountsModule();
     public final WindowedFullscreenModule windowedFullscreenModule = new WindowedFullscreenModule();
 
     // Add all modules here.
     public final void preInitialisation() {
         this.modules.add(discordRPModule);
         this.modules.add(windowedFullscreenModule);
+        this.modules.add(accountsModule);
     }
 
     /** Constructor to created ModuleManager. **/

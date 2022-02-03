@@ -5,6 +5,8 @@ import com.evieclient.events.bus.EventSubscriber;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import io.sentry.Sentry;
 import java.io.File;
