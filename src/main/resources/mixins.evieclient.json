@@ -9,6 +9,7 @@
     "entity.MixinEntityPlayerSP",
     "entity.MixinEntityPlayer",
     "network.MixinNetHandlerPlayClient",
-    "client.gui.MainMenu"
+    "client.gui.MainMenu",
+    "client.gui.NewChat"
   ]
 }
