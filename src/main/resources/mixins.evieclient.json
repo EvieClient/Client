@@ -10,6 +10,8 @@
     "entity.MixinEntityPlayer",
     "network.MixinNetHandlerPlayClient",
     "client.gui.MainMenu",
-    "client.gui.NewChat"
+    "client.gui.NewChat",
+    "client.gui.GuiIngameMixin",
+    "client.renderer.entity.RenderMixin"
   ]
 }

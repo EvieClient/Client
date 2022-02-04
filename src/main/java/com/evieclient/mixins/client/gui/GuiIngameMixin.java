@@ -10,9 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiIngame.class) public class GuiIngameMixin {
 
-    @Inject(method = "renderGameOverlay", at = @At("HEAD"))
+    @Inject(method = "renderGameOverlay", at = @At("TAIL"))
     private void renderEvieRenderModules(float partialTicks, CallbackInfo ci) {
         Evie.MODULE_MANAGER.renderHook();
-        Evie.log("rendered it mixing")
     }
 }

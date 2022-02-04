@@ -5,5 +5,5 @@ package com.evieclient.modules;
 public enum Category {
     UTIL,
     QOL,
-    DISPLAY
+    INFO
 }

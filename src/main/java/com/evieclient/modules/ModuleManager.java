@@ -3,7 +3,7 @@
 package com.evieclient.modules;
 
 import com.evieclient.modules.hud.RenderModule;
-import com.evieclient.modules.impl.display.ReachDisplay;
+import com.evieclient.modules.hud.impl.info.ReachDisplay;
 import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.modules.impl.util.DiscordRPModule;
 import com.evieclient.modules.impl.util.WindowedFullscreenModule;

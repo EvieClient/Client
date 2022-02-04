@@ -24,8 +24,6 @@ public class Module {
     private final Category category;
     @Getter
     private final ArrayList<Setting> settings = new ArrayList<>();
-    public int xPos = 10;
-    public int yPos = 10;
     @Setter
     private int priority = 5;
     @Setter

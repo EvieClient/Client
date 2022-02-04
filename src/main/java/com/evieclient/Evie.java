@@ -2,9 +2,13 @@ package com.evieclient;
 
 import com.evieclient.events.bus.EventBus;
 import com.evieclient.events.bus.EventSubscriber;
+import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
+import com.evieclient.modules.hud.HUDConfigScreen;
+import com.evieclient.utils.api.SocketClient;
 import io.sentry.Sentry;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.SlickException;
 
@@ -19,26 +23,23 @@ public class Evie {
     public static final String NAME = "Evie", VERSION = "b0.1", MCVERSION = "1.8.9";
     public static final File evieDir = new File(System.getenv("APPDATA") + "/." + NAME.toLowerCase());
     public static final File settingsFile = new File(System.getenv("APPDATA") + "/." + NAME.toLowerCase() + "/settings.json");
-
-    // Public client instance
     public static final Evie INSTANCE = new Evie();
     public static final EventBus EVENT_BUS = new EventBus();
-    public static ModuleManager MODULE_MANAGER = null;
+    public static Minecraft mc = Minecraft.getMinecraft();
 
+    // Module Manager
+    public static ModuleManager MODULE_MANAGER = null;
     static {
         try {
             MODULE_MANAGER = new ModuleManager();
-        } catch (SlickException e) {
-            e.printStackTrace();
-            Sentry.captureException(e);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Sentry.captureException(e);
-        } catch (FontFormatException e) {
+        } catch (SlickException | IOException | FontFormatException e) {
             e.printStackTrace();
             Sentry.captureException(e);
         }
     }
+
+    // States
+    public boolean hasSentWS = false;
 
     // Main
     public Evie() {
@@ -47,6 +48,8 @@ public class Evie {
             options.setDsn("https://24c61932d4a84df79726aee1615ae698@o1101223.ingest.sentry.io/6179220");
             options.setTracesSampleRate(1.0);
         });
+
+        SocketClient.sendRequest("omg test req lol :-)");
 
         log("Starting Client!");
 
@@ -63,6 +66,20 @@ public class Evie {
         log("Post Initiation Done! ");
         MODULE_MANAGER.preInitialisation();
         Evie.EVENT_BUS.register(this);
+
+        MODULE_MANAGER.reachDisplay.toggle();
+    }
+
+    // Websocket
+    @EventSubscriber
+    public void onTick(GameLoopEvent e){
+        if(mc.thePlayer != null && mc.theWorld != null){
+            if(!hasSentWS){
+                SocketClient.sendRequest("start_evie", mc.thePlayer.getGameProfile().getName() + ":true");
+                SocketClient.sendRequest("start_evie", "twisttaan" + ":true");
+                hasSentWS = true;
+            }
+        }
     }
 
     // Called when game shuts down.
@@ -71,10 +88,11 @@ public class Evie {
         log("Shutdown " + MODULE_MANAGER.shutdown() + " modules!");
     }
 
+    // Open HUD Config Screen
     @EventSubscriber
     public void onRshift(KeyPressedEvent e){
         if(e.getKeyCode() == Keyboard.KEY_RSHIFT){
-            MODULE_MANAGER.reachDisplay.toggle();
+            Minecraft.getMinecraft().displayGuiScreen(new HUDConfigScreen());
         }
     }
 
