@@ -22,7 +22,7 @@ public class AccountsModule extends Module {
 
     @Override public void setupModule () {
         try {
-            SessionChanger.getInstance().setUserOffline("test");
+            SessionChanger.getInstance().setUserOffline("evieclient");
         } catch (IllegalAccessException e) {
             Sentry.captureException(e);
         }

@@ -1,5 +1,3 @@
-
-
 package com.evieclient.events.impl.client.input;
 
 import com.evieclient.events.Event;

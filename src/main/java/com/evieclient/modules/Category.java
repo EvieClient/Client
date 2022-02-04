@@ -4,5 +4,6 @@ package com.evieclient.modules;
  * @since 1.0.0 **/
 public enum Category {
     UTIL,
-    QOL
+    QOL,
+    DISPLAY
 }

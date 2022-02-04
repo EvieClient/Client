@@ -2,10 +2,14 @@ package com.evieclient.mixins.client.gui;
 
 import com.evieclient.modules.impl.qol.Chat;
 import com.evieclient.utils.render.AnimationUtils;
+import net.java.games.input.Component;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiNewChat;
+import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ResourceLocation;
 import org.apache.http.client.methods.Configurable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -68,10 +72,6 @@ public abstract class NewChat extends Gui implements Configurable {
 
     @ModifyArg(method = "drawChat", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/FontRenderer;drawStringWithShadow(Ljava/lang/String;FFI)I"), index = 3)
     private int modifyTextOpacity(int original) {
-        if (Chat.showPlayerHeads){
-            // render the player head on the left of the string
-
-        }
         if (Chat.smoothChat) {
             int opacity = (original >> 24) & 0xFF;
             opacity *= animationPercent;
@@ -91,5 +91,4 @@ public abstract class NewChat extends Gui implements Configurable {
         newLines = original.size() - 1;
         return original;
     }
-
 }
