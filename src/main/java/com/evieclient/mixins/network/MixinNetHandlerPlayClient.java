@@ -1,5 +1,3 @@
-
-
 package com.evieclient.mixins.network;
 
 import com.evieclient.events.impl.client.ActionBarEvent;
@@ -15,14 +13,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.IOException;
 
-/** MixinBootstrap Events for MixinNetHandlerPlayClient.class.
- * @since 1.0.0 **/
+/**
+ * MixinBootstrap Events for MixinNetHandlerPlayClient.class.
+ *
+ * @since 1.0.0
+ **/
 @Mixin(NetHandlerPlayClient.class)
 public class MixinNetHandlerPlayClient {
 
-    /** Post {@link ActionBarEvent} or {@link ChatReceivedEvent} at chat packet.
+    /**
+     * Post {@link ActionBarEvent} or {@link ChatReceivedEvent} at chat packet.
+     *
      * @param callbackInfo unused
-     * @param packetIn chat packet received **/
+     * @param packetIn     chat packet received
+     **/
     @Inject(method = "handleChat", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER), cancellable = true)
     private void onChatPacket(S02PacketChat packetIn, CallbackInfo callbackInfo) {
         ChatReceivedEvent event;

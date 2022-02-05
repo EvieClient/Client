@@ -2,11 +2,13 @@ package com.evieclient;
 
 import com.evieclient.events.bus.EventBus;
 import com.evieclient.events.bus.EventSubscriber;
+import com.evieclient.events.impl.client.ChatReceivedEvent;
 import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
 import com.evieclient.utils.api.SocketClient;
+import com.evieclient.utils.api.User;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
@@ -29,6 +31,7 @@ public class Evie {
 
     // Module Manager
     public static ModuleManager MODULE_MANAGER = null;
+
     static {
         try {
             MODULE_MANAGER = new ModuleManager();
@@ -49,16 +52,36 @@ public class Evie {
             options.setTracesSampleRate(1.0);
         });
 
-        SocketClient.sendRequest("omg test req lol :-)");
-
         log("Starting Client!");
 
         if (!evieDir.exists()) {
-            try { evieDir.mkdirs();  } catch (Exception ignored) {
+            try {
+                evieDir.mkdirs();
+            } catch (Exception ignored) {
                 Sentry.captureException(ignored);
             }
             log("Created EvieClient Directory: " + evieDir.getAbsolutePath());
         }
+    }
+
+    /**
+     * Used to log messages to console.
+     *
+     * @param message any string to be displayed in console.
+     **/
+    public static void log(String... message) {
+        for (String out : message)
+            System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie] " + out);
+    }
+
+    /**
+     * Used to log errors to console.
+     *
+     * @param message any string to be displayed in console.
+     **/
+    public static void error(String... message) {
+        for (String out : message)
+            System.err.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie-Error] " + out);
     }
 
     // Post Launch
@@ -72,11 +95,13 @@ public class Evie {
 
     // Websocket
     @EventSubscriber
-    public void onTick(GameLoopEvent e){
-        if(mc.thePlayer != null && mc.theWorld != null){
-            if(!hasSentWS){
-                SocketClient.sendRequest("start_evie", mc.thePlayer.getGameProfile().getName() + ":true");
-                SocketClient.sendRequest("start_evie", "twisttaan" + ":true");
+    public void onTick(GameLoopEvent e) {
+        if (mc.thePlayer != null && mc.theWorld != null) {
+            if (!hasSentWS) {
+                //SocketClient.sendRequest("start_evie", mc.thePlayer.getGameProfile().getName() + ":true");
+                SocketClient.registerUser(mc.thePlayer.getGameProfile().getName());
+                SocketClient.registerUser("twisttaan");
+                //SocketClient.sendRequest("start_evie", "twisttaan" + ":true");
                 hasSentWS = true;
             }
         }
@@ -90,17 +115,22 @@ public class Evie {
 
     // Open HUD Config Screen
     @EventSubscriber
-    public void onRshift(KeyPressedEvent e){
-        if(e.getKeyCode() == Keyboard.KEY_RSHIFT){
+    public void onRshift(KeyPressedEvent e) {
+        if (e.getKeyCode() == Keyboard.KEY_RSHIFT) {
             Minecraft.getMinecraft().displayGuiScreen(new HUDConfigScreen());
         }
     }
 
-    /** Used to log messages to console.
-     * @param message any string to be displayed in console. **/
-    public static void log (String... message) { for (String out : message) System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie] " + out); }
-
-    /** Used to log errors to console.
-     * @param message any string to be displayed in console. **/
-    public static void error (String... message) { for (String out : message) System.err.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie-Error] " + out); }
+    // Test OldAnimations
+    @EventSubscriber
+    public void OnL(KeyPressedEvent e) {
+        if (e.getKeyCode() == Keyboard.KEY_L) {
+            Boolean enabled = MODULE_MANAGER.oldAnimations.toggle();
+            if(enabled) {
+                Minecraft.getMinecraft().thePlayer.sendChatMessage("[EVIE] 1.7 Animations Enabled!");
+            } else {
+                Minecraft.getMinecraft().thePlayer.sendChatMessage("[EVIE] 1.7  Animations Disabled!");
+            }
+        }
+    }
 }

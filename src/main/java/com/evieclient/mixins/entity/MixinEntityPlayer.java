@@ -9,14 +9,18 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin Event
+/**
+ * Mixin Event
  */
 @Mixin(EntityPlayer.class)
 public class MixinEntityPlayer {
 
-    /** posts a {@link EventAttackEntity}. **/
-    @Inject(method = "attackTargetEntityWithCurrentItem", at = @At("RETURN")) public void attackTargetEntityWithCurrentItem(Entity targetEntity, CallbackInfo ci) {
-        if(targetEntity != null) {
+    /**
+     * posts a {@link EventAttackEntity}.
+     **/
+    @Inject(method = "attackTargetEntityWithCurrentItem", at = @At("RETURN"))
+    public void attackTargetEntityWithCurrentItem(Entity targetEntity, CallbackInfo ci) {
+        if (targetEntity != null) {
             EventAttackEntity event = new EventAttackEntity(Minecraft.getMinecraft().thePlayer, targetEntity);
         }
     }

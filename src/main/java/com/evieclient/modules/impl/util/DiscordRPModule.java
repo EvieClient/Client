@@ -35,6 +35,8 @@ public class DiscordRPModule extends Module {
             // separate the secret from the IP
             String[] split = JoinSecret.split("-");
             String ip = split[0];
+
+            Evie.log("Joined server: " + ip);
             // join the server
             //Minecraft.getMinecraft().displayGuiScreen(new GuiMultiplayer(new NetHandlerPlayClient(Minecraft.getMinecraft().getSession().getProfile(), new ServerData(ip, "Evie Client", ip), Minecraft.getMinecraft().getCurrentServerData())));
 
@@ -54,15 +56,15 @@ public class DiscordRPModule extends Module {
     @EventSubscriber
     public void onWorldLoad (LoadWorldEvent event) {
         if (!Minecraft.getMinecraft().isSingleplayer())
-            this.updateRP("Multiplayer", "Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP, "", "", Minecraft.getMinecraft().getCurrentServerData());
-        else this.updateRP("Singleplayer", "alone...", "", "", null);
+            this.updateRP("Multiplayer", "Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP, "evieclientlogo", "Evie Client", Minecraft.getMinecraft().getCurrentServerData());
+        else this.updateRP("Singleplayer", "alone...", "evieclientlogo", "Evie Client", null);
     }
 
     @EventSubscriber public void onTick (GameLoopEvent event) {
         if (Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu)
-            this.updateRP("Main Menu", "In Game", "", "", null);
+            this.updateRP("Main Menu", "In Game", "evieclientlogo", "Evie Client", null);
         else if (Minecraft.getMinecraft().currentScreen instanceof GuiMultiplayer)
-            this.updateRP("Multiplayer Menu", "In Game", "", "", null);
+            this.updateRP("Multiplayer Menu", "In Game", "evieclientlogo", "Evie Client", null);
     }
 
     /** Updates the Rich Presents
@@ -76,7 +78,7 @@ public class DiscordRPModule extends Module {
         if (image != null) { b.setSmallImage(image, imageText); }
         if (server != null){
             b.setSecrets(server.serverIP + "-secret", "unused");
-            b.setParty(server.serverIP, 1 , 50);
+            b.setParty(server.serverIP, 1 , 1000);
         }
         b.setDetails(line1);
         b.setStartTimestamps(created);

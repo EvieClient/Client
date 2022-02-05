@@ -7,7 +7,6 @@ import net.minecraft.network.PacketBuffer;
 
 /**
  * Fired when the client receives a PluginMessage
- *
  **/
 public class PluginMessageEvent extends CancelableEvent {
 
@@ -19,7 +18,7 @@ public class PluginMessageEvent extends CancelableEvent {
 
     /**
      * @param channel The channel the message was sent on
-     * @param packet The data sent
+     * @param packet  The data sent
      **/
     public PluginMessageEvent(String channel, PacketBuffer packet) {
         this.channel = channel;

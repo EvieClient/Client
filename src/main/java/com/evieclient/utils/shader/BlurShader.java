@@ -1,5 +1,3 @@
-
-
 package com.evieclient.utils.shader;
 
 import com.evieclient.utils.ShaderProgram;

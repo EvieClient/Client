@@ -1,10 +1,9 @@
 package com.evieclient.modules.impl.util;
 
-import com.evieclient.Evie;
 import com.evieclient.events.bus.EventSubscriber;
+import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.modules.Category;
 import com.evieclient.modules.Module;
-import com.evieclient.events.impl.client.GameLoopEvent;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.LWJGLException;

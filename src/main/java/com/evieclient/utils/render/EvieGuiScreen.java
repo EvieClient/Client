@@ -10,13 +10,8 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-
-import static com.evieclient.Evie.evieDir;
 
 public class EvieGuiScreen extends GuiScreen {
-    private static final File customImage = new File(evieDir, "assets/textures/gui/background.png");
     private static ResourceLocation dynamicBackgroundTexture;
 
     public static void renderBackgroundImage() {
@@ -34,18 +29,18 @@ public class EvieGuiScreen extends GuiScreen {
     }
 
     private static boolean getCustomBackground() {
+        ClassLoader classLoader = EvieGuiScreen.class.getClassLoader();
+
         if (dynamicBackgroundTexture != null) return true;
-        if (customImage.exists()) {
-            BufferedImage bufferedImage;
-            try {
-                bufferedImage = ImageIO.read(new FileInputStream(customImage));
-            } catch (Exception e) {
-                Sentry.captureException(e);
-                return false;
-            }
-            if (bufferedImage != null && dynamicBackgroundTexture == null) {
-                dynamicBackgroundTexture = Minecraft.getMinecraft().getRenderManager().renderEngine.getDynamicTextureLocation(customImage.getName(), new DynamicTexture(bufferedImage));
-            }
+        BufferedImage bufferedImage;
+        try {
+            bufferedImage = ImageIO.read(classLoader.getResourceAsStream("assets/evie/textures/gui/evie_gradient.png"));
+        } catch (Exception e) {
+            Sentry.captureException(e);
+            return false;
+        }
+        if (bufferedImage != null && dynamicBackgroundTexture == null) {
+            dynamicBackgroundTexture = Minecraft.getMinecraft().getRenderManager().renderEngine.getDynamicTextureLocation("assets/evie/textures/gui/evie_gradient.png", new DynamicTexture(bufferedImage));
         } else {
             return false;
         }

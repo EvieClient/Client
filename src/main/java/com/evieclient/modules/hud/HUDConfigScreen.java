@@ -8,7 +8,7 @@ public class HUDConfigScreen extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
 
-        for(RenderModule m : Evie.MODULE_MANAGER.getRenderModuleList()) {
+        for (RenderModule m : Evie.MODULE_MANAGER.getRenderModuleList()) {
             m.renderDummy(mouseX, mouseY);
         }
 

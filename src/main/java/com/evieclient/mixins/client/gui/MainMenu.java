@@ -1,18 +1,20 @@
 package com.evieclient.mixins.client.gui;
 
 import com.evieclient.utils.render.EvieGuiScreen;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(GuiMainMenu.class) public class MainMenu extends GuiScreen {
+@Mixin(GuiMainMenu.class)
+public class MainMenu extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         EvieGuiScreen.renderBackgroundImage();
-        this.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
+        drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
         // credits
-        mc.fontRendererObj.drawString("EvieClient Private Beta | Registered for tristan#0005", 0 + 3, this.height - 25, -1);
-        mc.fontRendererObj.drawString("Not affiliated with Mojang", 0 + 3, this.height - 15, -1);
+        mc.fontRendererObj.drawString("EvieClient Private Beta", 0 + 3, this.height - 25, -1);
+        mc.fontRendererObj.drawString("Copyright Mojang AB. Do not distribute!", 0 + 3, this.height - 15, -1);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 

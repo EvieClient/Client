@@ -1,5 +1,3 @@
-
-
 package com.evieclient.mixins.client;
 
 import com.evieclient.Evie;
@@ -19,18 +17,29 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** MixinBootstrap Events for Minecraft.class.
+/**
+ * MixinBootstrap Events for Minecraft.class.
+ *
+ * @since 1.0.0
+ **/
+@Mixin(Minecraft.class)
+public class MixinMinecraft {
 
- * @since 1.0.0 **/
-@Mixin(Minecraft.class) public class MixinMinecraft {
-
-    /** Post {@link Evie} start.
-     * @param callbackInfo unused **/
+    /**
+     * Post {@link Evie} start.
+     *
+     * @param callbackInfo unused
+     **/
     @Inject(method = "startGame", at = @At("RETURN"))
-    private void onGameStart(CallbackInfo callbackInfo) { Evie.INSTANCE.postInitialisation(); }
+    private void onGameStart(CallbackInfo callbackInfo) {
+        Evie.INSTANCE.postInitialisation();
+    }
 
-    /** Post {@link Evie} shutdown.
-     * @param callbackInfo unused **/
+    /**
+     * Post {@link Evie} shutdown.
+     *
+     * @param callbackInfo unused
+     **/
     @Inject(method = "shutdown", at = @At("HEAD"))
     private void shutdown(CallbackInfo callbackInfo) {
         Evie.INSTANCE.shutdown();
@@ -46,8 +55,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         new GameLoopEvent().post();
     }
 
-    /** Post {@link KeyPressedEvent} or {@link KeyReleasedEvent} at key press.
-     * @param callbackInfo unused **/
+    /**
+     * Post {@link KeyPressedEvent} or {@link KeyReleasedEvent} at key press.
+     *
+     * @param callbackInfo unused
+     **/
     @Inject(method = "dispatchKeypresses", at = @At(value = "INVOKE_ASSIGN", target = "Lorg/lwjgl/input/Keyboard;getEventKeyState()Z", remap = false))
     private void runTickKeyboard(CallbackInfo callbackInfo) {
         Evie.EVENT_BUS.post(Keyboard.getEventKeyState() ?
@@ -55,29 +67,45 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
                 : new KeyReleasedEvent(Keyboard.isRepeatEvent(), Keyboard.getEventKey()));
     }
 
-    /** Post {@link LeftClickEvent} at left mouse click.
-     * @param callbackInfo unused **/
+    /**
+     * Post {@link LeftClickEvent} at left mouse click.
+     *
+     * @param callbackInfo unused
+     **/
     @Inject(method = "clickMouse", at = @At("RETURN"))
-    private void leftClickMouse(CallbackInfo callbackInfo) { new LeftClickEvent().post(); }
+    private void leftClickMouse(CallbackInfo callbackInfo) {
+        new LeftClickEvent().post();
+    }
 
-    /** Post {@link RightClickEvent} at right mouse click.
-     * @param callbackInfo unused **/
+    /**
+     * Post {@link RightClickEvent} at right mouse click.
+     *
+     * @param callbackInfo unused
+     **/
     @Inject(method = "rightClickMouse", at = @At("RETURN"))
-    private void rightClickMouse(CallbackInfo callbackInfo) { new RightClickEvent().post(); }
+    private void rightClickMouse(CallbackInfo callbackInfo) {
+        new RightClickEvent().post();
+    }
 
-    /** Post {@link SinglePlayerJoinEvent} when joining single player world.
-     * @param folderName name of folder world file is located in.
-     * @param worldName name of world
+    /**
+     * Post {@link SinglePlayerJoinEvent} when joining single player world.
+     *
+     * @param folderName      name of folder world file is located in.
+     * @param worldName       name of world
      * @param worldSettingsIn settings of world
-     * @param callbackInfo unused **/
+     * @param callbackInfo    unused
+     **/
     @Inject(method = "launchIntegratedServer", at = @At("HEAD"))
     private void joinSinglePlayer(String folderName, String worldName, WorldSettings worldSettingsIn, CallbackInfo callbackInfo) {
         new SinglePlayerJoinEvent(folderName, worldName, worldSettingsIn).post();
     }
 
-    /** Post {@link LoadWorldEvent} when new world is loaded for player.
-     * @param worldClient world client used.
-     * @param callbackInfo unused **/
+    /**
+     * Post {@link LoadWorldEvent} when new world is loaded for player.
+     *
+     * @param worldClient  world client used.
+     * @param callbackInfo unused
+     **/
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;)V", at = @At("HEAD"))
     private void loadWorld(WorldClient worldClient, CallbackInfo callbackInfo) {
         new LoadWorldEvent(worldClient).post();

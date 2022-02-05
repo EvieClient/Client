@@ -1,5 +1,3 @@
-
-
 package com.evieclient.events.bus;
 
 import com.evieclient.Evie;
@@ -9,15 +7,20 @@ import lombok.Setter;
 
 import java.lang.reflect.Method;
 
-/** Internal data class for storing event listener data.
- * @since 1.0.0 **/
+/**
+ * Internal data class for storing event listener data.
+ *
+ * @since 1.0.0
+ **/
 public class EventListener {
 
     @Getter
     private final Object instance;
-    @Getter @Setter
+    @Getter
+    @Setter
     private Method method;
-    @Getter private Priority eventPriority;
+    @Getter
+    private Priority eventPriority;
 
     public EventListener(Object listener, Method method, Priority eventPriority) {
         instance = listener;
@@ -25,9 +28,12 @@ public class EventListener {
         this.eventPriority = eventPriority;
     }
 
-    /** Sets the event priority and sorts the event listeners.
+    /**
+     * Sets the event priority and sorts the event listeners.
+     *
      * @param eventPriority new event priority
-     * @param classToSort event class **/
+     * @param classToSort   event class
+     **/
     void setEventPriority(Priority eventPriority, Class<? extends Event> classToSort) {
         this.eventPriority = eventPriority;
         if (classToSort != null) {

@@ -22,18 +22,22 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class EventBus {
     private final HashMap<Class<? extends Event>, CopyOnWriteArrayList<EventListener>> listeners = new HashMap<>();
 
-    /** Registers an object to the {@link EventBus}.
+    /**
+     * Registers an object to the {@link EventBus}.
      * All methods annotated with the {@link EventSubscriber} annotation
      * will be called when that Event is posted.
-     * @param any instance of the object you want to register **/
+     *
+     * @param any instance of the object you want to register
+     **/
     public void register(Object any) {
-        Class<?>[] classes = new Class<?>[] { any.getClass(), any.getClass().getSuperclass() };
+        Class<?>[] classes = new Class<?>[]{any.getClass(), any.getClass().getSuperclass()};
         for (Class<?> clazz : classes) {
             TypeToken.of(clazz).getTypes().rawTypes().forEach(m -> {
                 for (Method method : m.getDeclaredMethods()) {
                     EventSubscriber annotation = method.getAnnotation(EventSubscriber.class);
                     if (annotation == null) continue;
-                    if (method.getParameterCount() == 0) throw new IllegalArgumentException(method.getName() + " doesn't have any parameters!");
+                    if (method.getParameterCount() == 0)
+                        throw new IllegalArgumentException(method.getName() + " doesn't have any parameters!");
                     method.setAccessible(true);
 
                     Class<? extends Event> event;
@@ -54,23 +58,32 @@ public class EventBus {
         }
     }
 
-    /** Unregisters an object from the EventBus.
-     * @param any object to be unregistered from the EventBus **/
+    /**
+     * Unregisters an object from the EventBus.
+     *
+     * @param any object to be unregistered from the EventBus
+     **/
     public void unregister(Object any) {
         listeners.values().forEach(it -> it.removeIf(listener -> listener.getInstance() == any));
     }
 
-    /** Unregisters <b>all instances</b> of the specified class from the EventBus.
-     * @param aClass class of the object to be removed **/
+    /**
+     * Unregisters <b>all instances</b> of the specified class from the EventBus.
+     *
+     * @param aClass class of the object to be removed
+     **/
     public void unregister(Class<?> aClass) {
         listeners.values().forEach(it -> it.removeIf(listener -> listener.getInstance().getClass() == aClass));
     }
 
-    /** Sets the priority of all methods with the specified event
+    /**
+     * Sets the priority of all methods with the specified event
      * in <b>all instances</b> of the specified object.
-     * @param any object to change the priority of
-     * @param event event
-     * @param newPriority the new priority of the method **/
+     *
+     * @param any         object to change the priority of
+     * @param event       event
+     * @param newPriority the new priority of the method
+     **/
     public void setPriorityOf(Object any, Event event, Priority newPriority) {
         Class<? extends Event> eventClass = event.getClass();
         listeners.getOrDefault(eventClass, new CopyOnWriteArrayList<>()).forEach(listener -> {
@@ -80,11 +93,14 @@ public class EventBus {
         });
     }
 
-    /** Sets the priority of all methods with the specified event
+    /**
+     * Sets the priority of all methods with the specified event
      * in <b>all instances</b> of the specified class.
-     * @param aClass class of the method to change the priority of
-     * @param event event
-     * @param newPriority the new priority of the method **/
+     *
+     * @param aClass      class of the method to change the priority of
+     * @param event       event
+     * @param newPriority the new priority of the method
+     **/
     public void setPriorityOf(Class<?> aClass, Event event, Priority newPriority) {
         Class<? extends Event> eventClass = event.getClass();
         listeners.getOrDefault(eventClass, new CopyOnWriteArrayList<>()).forEach(listener -> {
@@ -94,9 +110,12 @@ public class EventBus {
         });
     }
 
-    /** Posts an event to the {@link EventBus}.
+    /**
+     * Posts an event to the {@link EventBus}.
      * This calls every method that is listening for the event in question.
-     * @param event event to post **/
+     *
+     * @param event event to post
+     **/
     public void post(Event event) {
         if (event != null) {
             boolean cancelable = event instanceof CancelableEvent;
@@ -112,8 +131,11 @@ public class EventBus {
         }
     }
 
-    /** Sorts all event listeners listening for the specified event by priority.
-     * @param eventClass class of event in question **/
+    /**
+     * Sorts all event listeners listening for the specified event by priority.
+     *
+     * @param eventClass class of event in question
+     **/
     void sort(Class<? extends Event> eventClass) {
         listeners.get(eventClass).sort(Comparator.comparingInt(listener -> listener.getEventPriority().getId()));
     }

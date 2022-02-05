@@ -1,8 +1,6 @@
 package com.evieclient.modules;
 
 import com.evieclient.Evie;
-import com.evieclient.events.bus.EventSubscriber;
-import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.settings.Setting;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +27,7 @@ public class Module {
     @Setter
     @Getter
     private boolean enabled;
+
     public Module(String name, String description, Category category) {
         this(name, description, category, false);
     }

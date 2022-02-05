@@ -1,6 +1,5 @@
 package com.evieclient.modules.hud.impl.info;
 
-import com.evieclient.Evie;
 import com.evieclient.modules.Category;
 import com.evieclient.modules.hud.RenderModule;
 import net.minecraft.entity.EntityLivingBase;

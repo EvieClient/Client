@@ -1,5 +1,3 @@
-
-
 package com.evieclient.mixins.client;
 
 import com.evieclient.events.impl.client.PlaySoundEvent;
@@ -13,9 +11,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(SoundManager.class)
 public class MixinSoundManager {
 
-    /** Post {@link PlaySoundEvent} when sound is played on client.
+    /**
+     * Post {@link PlaySoundEvent} when sound is played on client.
+     *
      * @param callbackInfo used to cancel event
-     * @param sound sound played **/
+     * @param sound        sound played
+     **/
     @Inject(method = "playSound", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/audio/SoundHandler;getSound(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/audio/SoundEventAccessorComposite;"), cancellable = true)
     private void playSound(ISound sound, CallbackInfo callbackInfo) {
         PlaySoundEvent playSoundEvent = new PlaySoundEvent(sound);

@@ -9,17 +9,23 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-/** Loads shaders.
- * @since 1.0.0 **/
+/**
+ * Loads shaders.
+ *
+ * @since 1.0.0
+ **/
 
 public abstract class ShaderProgram {
-    private int programID;
-    private int vertexShaderID;
-    private int fragmentShaderID;
+    private final int programID;
+    private final int vertexShaderID;
+    private final int fragmentShaderID;
 
-    /** Loads and links the shaders.
+    /**
+     * Loads and links the shaders.
+     *
      * @param vertexFile
-     * @param fragmentFile **/
+     * @param fragmentFile
+     **/
     public ShaderProgram(String vertexFile, String fragmentFile) {
         vertexShaderID = loadShader(vertexFile, GL20.GL_VERTEX_SHADER);
         fragmentShaderID = loadShader(fragmentFile, GL20.GL_FRAGMENT_SHADER);
@@ -31,48 +37,25 @@ public abstract class ShaderProgram {
         bindAttributes();
     }
 
-    /** Starts the shader. **/
-    public void start() {
-        GL20.glUseProgram(programID);
-    }
-
-    /** Stops the shader. **/
-    public void stop() {
-        GL20.glUseProgram(0);
-    }
-
-    /** Cleans up the shader. **/
-    public void cleanUp() {
-        stop();
-        GL20.glDetachShader(programID, vertexShaderID);
-        GL20.glDetachShader(programID, fragmentShaderID);
-        GL20.glDeleteShader(vertexShaderID);
-        GL20.glDeleteShader(fragmentShaderID);
-        GL20.glDeleteProgram(programID);
-    }
-
-    protected abstract void bindAttributes();
-
-    protected void bindAttribute(int attribute, String variableName) {
-        GL20.glBindAttribLocation(programID, attribute, variableName);
-    }
-
-    /** Load a shader.
+    /**
+     * Load a shader.
+     *
      * @param file This is the path to the shader file
-     * @param type This is the type of shader **/
+     * @param type This is the type of shader
+     **/
     private static int loadShader(String file, int type) {
         StringBuilder shaderSource = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 shaderSource.append(line).append("\n");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.exit(-1);
         } catch (IOException e) {
-  Sentry.captureException(e);
+            Sentry.captureException(e);
             e.printStackTrace();
             System.exit(-1);
         }
@@ -88,5 +71,37 @@ public abstract class ShaderProgram {
             System.exit(-1);
         }
         return shaderID;
+    }
+
+    /**
+     * Starts the shader.
+     **/
+    public void start() {
+        GL20.glUseProgram(programID);
+    }
+
+    /**
+     * Stops the shader.
+     **/
+    public void stop() {
+        GL20.glUseProgram(0);
+    }
+
+    /**
+     * Cleans up the shader.
+     **/
+    public void cleanUp() {
+        stop();
+        GL20.glDetachShader(programID, vertexShaderID);
+        GL20.glDetachShader(programID, fragmentShaderID);
+        GL20.glDeleteShader(vertexShaderID);
+        GL20.glDeleteShader(fragmentShaderID);
+        GL20.glDeleteProgram(programID);
+    }
+
+    protected abstract void bindAttributes();
+
+    protected void bindAttribute(int attribute, String variableName) {
+        GL20.glBindAttribLocation(programID, attribute, variableName);
     }
 }

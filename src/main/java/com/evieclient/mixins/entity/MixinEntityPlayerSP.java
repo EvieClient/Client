@@ -1,5 +1,3 @@
-
-
 package com.evieclient.mixins.entity;
 
 import com.evieclient.events.impl.client.PlayerChatEvent;
@@ -11,17 +9,26 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-/** MixinBootstrap Events for EntityPlayerSP.class.
- * @since 1.0.0 **/
+/**
+ * MixinBootstrap Events for EntityPlayerSP.class.
+ *
+ * @since 1.0.0
+ **/
 @Mixin(EntityPlayerSP.class)
 public class MixinEntityPlayerSP {
 
-    @Shadow @Final public NetHandlerPlayClient sendQueue;
+    @Shadow
+    @Final
+    public NetHandlerPlayClient sendQueue;
 
-    /** Posts a {@link PlayerChatEvent}.
+    /**
+     * Posts a {@link PlayerChatEvent}.
      * If the event is canceled, prevent the client from sending any message.
-     * @param  message message player sent **/
-    @Overwrite public void sendChatMessage(String message) {
+     *
+     * @param message message player sent
+     **/
+    @Overwrite
+    public void sendChatMessage(String message) {
         if (message != null) {
             PlayerChatEvent event = new PlayerChatEvent(message);
             if (!event.isCanceled()) {

@@ -7,15 +7,15 @@ public class DraggableComponent {
 
     private int x;
     private int y;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private int color;
     private int lastX;
     private int lastY;
 
     private boolean dragging;
 
-    public DraggableComponent(int x, int y, int width, int height, int color){
+    public DraggableComponent(int x, int y, int width, int height, int color) {
         this.width = width;
         this.height = height;
         this.x = x;
@@ -27,12 +27,12 @@ public class DraggableComponent {
         return x;
     }
 
-    public int getyPosition() {
-        return y;
-    }
-
     public void setxPosition(int x) {
         this.x = x;
+    }
+
+    public int getyPosition() {
+        return y;
     }
 
     public void setyPosition(int y) {
@@ -55,13 +55,13 @@ public class DraggableComponent {
         this.color = color;
     }
 
-    public void draw(int mouseX, int mouseY){
+    public void draw(int mouseX, int mouseY) {
         draggingFix(mouseX, mouseY);
-        Gui.drawRect(this.getxPosition(), this.getyPosition(), this.getxPosition()+this.getWidth(), this.getyPosition()+this.getHeight(), this.getColor());
-        boolean mouseOverX = (mouseX >= this.getxPosition() && mouseX <= this.getxPosition()+this.getWidth());
-        boolean mouseOverY = (mouseY >= this.getyPosition() && mouseY <= this.getyPosition()+this.getHeight());
-        if(mouseOverX && mouseOverY){
-            if(Mouse.isButtonDown(0)){
+        Gui.drawRect(this.getxPosition(), this.getyPosition(), this.getxPosition() + this.getWidth(), this.getyPosition() + this.getHeight(), this.getColor());
+        boolean mouseOverX = (mouseX >= this.getxPosition() && mouseX <= this.getxPosition() + this.getWidth());
+        boolean mouseOverY = (mouseY >= this.getyPosition() && mouseY <= this.getyPosition() + this.getHeight());
+        if (mouseOverX && mouseOverY) {
+            if (Mouse.isButtonDown(0)) {
                 if (!this.dragging) {
                     this.lastX = x - mouseX;
                     this.lastY = y - mouseY;
@@ -75,7 +75,7 @@ public class DraggableComponent {
         if (this.dragging) {
             this.x = mouseX + this.lastX;
             this.y = mouseY + this.lastY;
-            if(!Mouse.isButtonDown(0)) this.dragging = false;
+            if (!Mouse.isButtonDown(0)) this.dragging = false;
         }
     }
 }

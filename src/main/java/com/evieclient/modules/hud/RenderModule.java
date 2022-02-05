@@ -6,7 +6,6 @@ import com.evieclient.modules.Module;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
 
@@ -21,7 +20,7 @@ public class RenderModule extends Module {
     public RenderModule(String name, String description, Category category, Boolean enabled) {
         super(name, description, category, false);
         fr = mc.fontRendererObj;
-        drag = new DraggableComponent(0, 0, 0 + getWidth(), 0 + getHeight(), new Color(0, 0, 0,0).getRGB());
+        drag = new DraggableComponent(0, 0, 0 + getWidth(), 0 + getHeight(), new Color(0, 0, 0, 0).getRGB());
         try {
             customFr = new com.evieclient.utils.render.FontRenderer("ROBOTO", 10);
         } catch (Exception e) {
@@ -33,6 +32,7 @@ public class RenderModule extends Module {
     public int getX() {
         return drag.getxPosition();
     }
+
     public int getY() {
         return drag.getyPosition();
     }
@@ -45,7 +45,8 @@ public class RenderModule extends Module {
         return 0;
     }
 
-    public void render() { }
+    public void render() {
+    }
 
     public void renderDummy(int cursorX, int cursorY) {
         drag.draw(cursorX, cursorY);

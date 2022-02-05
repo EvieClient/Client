@@ -1,6 +1,5 @@
 package com.evieclient.utils;
 
-import java.util.UUID;
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.AuthenticationService;
 import com.mojang.authlib.UserAuthentication;
@@ -10,18 +9,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
+import java.util.UUID;
+
 public class SessionChanger {
 
     private static SessionChanger instance;
     private final UserAuthentication auth;
-
-    public static SessionChanger getInstance() {
-        if (instance == null) {
-            instance = new SessionChanger();
-        }
-
-        return instance;
-    }
 
     // Creates a new Authentication Service with Yggdrasil.
     private SessionChanger() {
@@ -31,10 +24,17 @@ public class SessionChanger {
         authService.createMinecraftSessionService();
     }
 
+    public static SessionChanger getInstance() {
+        if (instance == null) {
+            instance = new SessionChanger();
+        }
+
+        return instance;
+    }
 
     // Login with Online mode
     public void setUser(String email, String password) {
-        if(!Minecraft.getMinecraft().getSession().getUsername().equals(email) || Minecraft.getMinecraft().getSession().getToken().equals("0")){
+        if (!Minecraft.getMinecraft().getSession().getUsername().equals(email) || Minecraft.getMinecraft().getSession().getToken().equals("0")) {
 
             this.auth.logOut();
             this.auth.setUsername(email);
@@ -43,8 +43,7 @@ public class SessionChanger {
                 this.auth.logIn();
                 Session session = new Session(this.auth.getSelectedProfile().getName(), UUIDTypeAdapter.fromUUID(auth.getSelectedProfile().getId()), this.auth.getAuthenticatedToken(), this.auth.getUserType().getName());
                 setSession(session);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
