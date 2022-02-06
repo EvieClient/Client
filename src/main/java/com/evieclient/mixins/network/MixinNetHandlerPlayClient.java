@@ -11,8 +11,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.io.IOException;
-
 /**
  * MixinBootstrap Events for MixinNetHandlerPlayClient.class.
  *
@@ -38,9 +36,8 @@ public class MixinNetHandlerPlayClient {
         }
     }
 
-    // on PluginMessageRecive Event make an @Inject to this method
-    @Inject(method = "handleCustomPayload", at = @At("HEAD"), cancellable = true)
-    private void onPluginMessageRecive(S3FPacketCustomPayload payload, CallbackInfo ci) throws IOException {
+    @Inject(at = @At("HEAD"), method = "handleCustomPayload", cancellable = true)
+    private void onPluginMessageReceive(S3FPacketCustomPayload payload, CallbackInfo ci) {
         PluginMessageEvent event;
         event = new PluginMessageEvent(payload.getChannelName(), payload.getBufferData());
         event.post();

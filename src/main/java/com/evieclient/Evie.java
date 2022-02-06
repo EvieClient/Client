@@ -2,13 +2,11 @@ package com.evieclient;
 
 import com.evieclient.events.bus.EventBus;
 import com.evieclient.events.bus.EventSubscriber;
-import com.evieclient.events.impl.client.ChatReceivedEvent;
 import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
 import com.evieclient.utils.api.SocketClient;
-import com.evieclient.utils.api.User;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
@@ -98,10 +96,13 @@ public class Evie {
     public void onTick(GameLoopEvent e) {
         if (mc.thePlayer != null && mc.theWorld != null) {
             if (!hasSentWS) {
-                //SocketClient.sendRequest("start_evie", mc.thePlayer.getGameProfile().getName() + ":true");
+                // Register user on websocket
                 SocketClient.registerUser(mc.thePlayer.getGameProfile().getName());
-                SocketClient.registerUser("twisttaan");
-                //SocketClient.sendRequest("start_evie", "twisttaan" + ":true");
+                // Register user on Sentry
+                io.sentry.protocol.User user = new io.sentry.protocol.User();
+                user.setId(mc.thePlayer.getGameProfile().getId().toString());
+                user.setUsername(mc.thePlayer.getGameProfile().getName());
+                Sentry.setUser(user);
                 hasSentWS = true;
             }
         }
@@ -126,11 +127,25 @@ public class Evie {
     public void OnL(KeyPressedEvent e) {
         if (e.getKeyCode() == Keyboard.KEY_L) {
             Boolean enabled = MODULE_MANAGER.oldAnimations.toggle();
-            if(enabled) {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("[EVIE] 1.7 Animations Enabled!");
+            if (enabled) {
+                Minecraft.getMinecraft().thePlayer.playSound("note.pling", 1.0F, 1.0F);
             } else {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("[EVIE] 1.7  Animations Disabled!");
+                Minecraft.getMinecraft().thePlayer.playSound("note.snare", 1.0F, 1.0F);
             }
+        }
+    }
+
+    @EventSubscriber
+    public void Music(KeyPressedEvent e) {
+        if (Minecraft.getMinecraft().thePlayer == null) return;
+        if (e.getKeyCode() == Keyboard.KEY_LEFT) {
+            Minecraft.getMinecraft().thePlayer.playSound("note.bd", 1.0F, 1.0F);
+        }
+        if (e.getKeyCode() == Keyboard.KEY_DOWN) {
+            Minecraft.getMinecraft().thePlayer.playSound("note.snare", 1.0F, 1.0F);
+        }
+        if (e.getKeyCode() == Keyboard.KEY_RIGHT) {
+            Minecraft.getMinecraft().thePlayer.playSound("note.hat", 1.0F, 1.0F);
         }
     }
 }

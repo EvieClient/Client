@@ -2,7 +2,7 @@
   "required": true,
   "compatibilityLevel": "JAVA_8",
   "package": "com.evieclient.mixins",
-  "refmap": "mixins.evieclient.json",
+  "refmap": "mixin.evieclient.refmap.json",
   "verbose": true,
   "mixins": [
     "client.MixinMinecraft",
