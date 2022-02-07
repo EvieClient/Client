@@ -14,12 +14,14 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath 'com.guardsquare:proguard-gradle:7.2.0'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'java'
+apply plugin: 'com.guardsquare.proguard'
 
 version = "1.0.0"
 group= "com.evieclient" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -113,6 +115,15 @@ processResources {
     copy {
         from("src/main/resources")
         into("build/classes/main")
+    }
+}
+
+proguard {
+    configurations {
+        release {
+            defaultConfiguration 'proguard-android-optimize.txt'
+            configuration 'proguard-project.txt'
+        }
     }
 }
 
