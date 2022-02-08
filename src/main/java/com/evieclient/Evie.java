@@ -24,7 +24,7 @@ public class Evie {
     public static final File settingsFile = new File(System.getenv("APPDATA") + "/." + NAME.toLowerCase() + "/settings.json");
     public static final Evie INSTANCE = new Evie();
     public static final EventBus EVENT_BUS = new EventBus();
-    public static String COMMIT_HASH = "unknown";
+    public static String COMMIT_HASH = getCINote();
     public static Minecraft mc = Minecraft.getMinecraft();
 
     // Module Manager
@@ -44,7 +44,6 @@ public class Evie {
 
     // Main
     public Evie() {
-        createBuildId();
         log("Starting Client! EV: " + COMMIT_HASH);
         // Init Sentry
         Sentry.init(options -> {
@@ -94,19 +93,23 @@ public class Evie {
     }
 
     // Build Info
-    private void createBuildId() {
-        InputStream resourceAsStream = getClass().getResourceAsStream("/ci.txt");
+    private static String getCINote() {
+        InputStream resourceAsStream = Evie.class.getResourceAsStream("/ci.txt");
         try {
             if (resourceAsStream != null) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(resourceAsStream));
-                COMMIT_HASH = br.readLine();
+                String line = br.readLine();
                 br.close();
                 resourceAsStream.close();
+                return line;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Sentry.captureException(e);
+            return "???";
         }
+        return "???";
     }
+
 
     // Websocket
     @EventSubscriber

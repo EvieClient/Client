@@ -6,15 +6,17 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
 public class MainMenu extends GuiScreen {
-    @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+    @Inject (method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiMainMenu;drawString(Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V", shift = At.Shift.AFTER))
+    public void drawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         EvieGuiScreen.renderBackgroundImage();
-        drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
         // credits
-        mc.fontRendererObj.drawString("EvieClient Private Beta ("+ Evie.COMMIT_HASH+")", 0 + 3, this.height - 25, -1);
+        mc.fontRendererObj.drawString("EvieClient Private Beta ("+ Evie.COMMIT_HASH +")", 0 + 3, this.height - 25, -1);
         mc.fontRendererObj.drawString("Copyright Mojang AB. Do not distribute!", 0 + 3, this.height - 15, -1);
     }
 
