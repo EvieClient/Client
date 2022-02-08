@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: archive-build
-          path: build/libs/PublicEvieClient-1.0.0_obf.jar
+          path: build/libs/EvieClient-1.0.0_obf.jar
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
         with:
@@ -32,5 +32,5 @@ jobs:
       - id: 'upload-jar'
         uses: 'google-github-actions/upload-cloud-storage@v0'
         with:
-          path: 'build/libs/PublicEvieClient-1.0.0_obf.jar'
-          destination: 'teamevieclient.appspot.com/1.8/PublicEvieClient-1.0.0.jar'
+          path: 'build/libs/EvieClient-1.0.0_obf.jar'
+          destination: 'teamevieclient.appspot.com/1.8/EvieClient-1.0.0.jar'
