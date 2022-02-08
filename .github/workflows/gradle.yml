@@ -19,7 +19,11 @@ jobs:
       - name: Leave a ci note
         run: 'echo "commit: $(git rev-parse --short HEAD)" > src/main/resources/ci.txt'
       - name: Build with Gradle
-        run: ./gradlew yguard
+        run: ./gradlew build
+      - name: Download superblaubeere27 obfuscator
+        run: wget https://github.com/superblaubeere27/obfuscator/releases/download/v1.9.3/obfuscator-1.9.3.jar -O obfuscator.jar
+      - name: Obfuscate
+        run: java -jar obfuscator.jar --jarIn build/libs/EvieClient-1.0.0.jar --jarOut build/libs/EvieClient-1.0.0_obf.jar
       - name: Archive Build
         uses: actions/upload-artifact@v2
         with:

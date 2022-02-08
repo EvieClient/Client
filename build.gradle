@@ -70,9 +70,6 @@ configurations {
 dependencies {
     // EvieClient Deps //
 
-    // Obfuscation
-    compile 'com.yworks:yguard:3.0.0'
-
     // Analytics
     embed 'io.sentry:sentry:5.6.0'
 
@@ -96,35 +93,6 @@ dependencies {
         exclude module: 'commons-io'
     }
 
-    task yguard {
-        group 'yGuard'
-        description 'Obfuscates and shrinks the java archive.'
-        dependsOn("build")
-        doLast {
-            ant.taskdef(
-                    name: 'yguard',
-                    classname: 'com.yworks.yguard.YGuardTask',
-                    classpath: sourceSets.main.runtimeClasspath.asPath
-            )
-
-            def archivePath = "$buildDir/libs/EvieClient-1.0.0.jar"
-
-            ant.yguard {
-                inoutpair(in: archivePath, out: archivePath.replace(".jar", "_obf.jar"))
-                rename(mainclass: "Evie", logfile: "${buildDir}/yguard.log.xml") {
-                    keep {
-                        'class'(classes: 'protected', methods: 'protected', fields: 'protected')
-                    }
-                }
-            }
-        }
-    }
-
-    task copyToLib(type: Copy) {
-        into "$buildDir/output/lib"
-        from configurations.runtime
-    }
-
     embed 'com.github.FalseHonesty:reflections:855f40b80b'
     embed 'com.github.ben-manes.caffeine:caffeine:2.8.0'
 
@@ -141,6 +109,11 @@ dependencies {
     embed 'org.ow2.asm:asm:5.0.3'
 
     embed fileTree(dir: 'libs', include: '*.jar')
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/output/lib"
+    from configurations.runtime
 }
 
 mixin {
