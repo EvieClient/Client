@@ -24,7 +24,7 @@ public class Evie {
     public static final File settingsFile = new File(System.getenv("APPDATA") + "/." + NAME.toLowerCase() + "/settings.json");
     public static final Evie INSTANCE = new Evie();
     public static final EventBus EVENT_BUS = new EventBus();
-    private static String COMMIT_HASH = null;
+    public static String COMMIT_HASH = "unknown";
     public static Minecraft mc = Minecraft.getMinecraft();
 
     // Module Manager

@@ -1,5 +1,6 @@
 package com.evieclient.mixins.client.gui;
 
+import com.evieclient.Evie;
 import com.evieclient.utils.render.EvieGuiScreen;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -13,9 +14,8 @@ public class MainMenu extends GuiScreen {
         EvieGuiScreen.renderBackgroundImage();
         drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
         // credits
-        mc.fontRendererObj.drawString("EvieClient Private Beta", 0 + 3, this.height - 25, -1);
+        mc.fontRendererObj.drawString("EvieClient Private Beta ("+ Evie.COMMIT_HASH+")", 0 + 3, this.height - 25, -1);
         mc.fontRendererObj.drawString("Copyright Mojang AB. Do not distribute!", 0 + 3, this.height - 15, -1);
-        super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
 //    @Override
