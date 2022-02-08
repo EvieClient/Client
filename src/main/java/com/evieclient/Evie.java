@@ -13,8 +13,7 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.SlickException;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,6 +24,7 @@ public class Evie {
     public static final File settingsFile = new File(System.getenv("APPDATA") + "/." + NAME.toLowerCase() + "/settings.json");
     public static final Evie INSTANCE = new Evie();
     public static final EventBus EVENT_BUS = new EventBus();
+    private static String COMMIT_HASH = null;
     public static Minecraft mc = Minecraft.getMinecraft();
 
     // Module Manager
@@ -84,11 +84,26 @@ public class Evie {
 
     // Post Launch
     public void postInitialisation() {
-        log("Post Initiation Done! ");
+        log("Post Initiation Done! EV: " + COMMIT_HASH);
         MODULE_MANAGER.preInitialisation();
         Evie.EVENT_BUS.register(this);
 
         MODULE_MANAGER.reachDisplay.toggle();
+    }
+
+    // Build Info
+    private void createBuildId() {
+        InputStream resourceAsStream = getClass().getResourceAsStream("/ci.txt");
+        try {
+            if (resourceAsStream != null) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(resourceAsStream));
+                COMMIT_HASH = br.readLine();
+                br.close();
+                resourceAsStream.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Websocket

@@ -38,6 +38,15 @@ minecraft {
     clientRunArgs = findProperty("clientArgs")?.split() ?: []
 }
 
+def getGitHash = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
 runClient {
     outputs.upToDateWhen { false }
 }
