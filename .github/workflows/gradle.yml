@@ -18,6 +18,12 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Download Proguard
+        run: wget https://github.com/Guardsquare/proguard/releases/download/v7.2.0/proguard-7.2.0.tar.gz -O proguard.tar.gz && tar -xzf proguard.tar.gz && rm proguard.tar.gz
+      - name: Download Proguard config
+        run: wget https://evie.pw/api/getProGuardConf?key=evielikestobepat -O proguard.cfg
+      - name: Run Proguard
+        run: ./proguard-7.2.0/bin/proguard.sh @proguard.cfg
       - name: Archive Build
         uses: actions/upload-artifact@v2
         with:
