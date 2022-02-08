@@ -1,8 +1,7 @@
 {
   "input": "build/libs/EvieClient-1.0.0.jar",
   "output": "build/libs/EvieClient-1.0.0_obf.jar",
-  "script": "function isRemappingEnabledForClass(node) {\n    return false;\n}\n\nfunction isObfuscatorEnabledForClass(node) {\n    var flag2 \u003d !node.name.startsWith(\"com/evieclient/mixins\");\n    return flag2;\n}",
-  "libraries": [],
+  "script": "function isRemappingEnabledForClass(node) {\n    return false;\n}\n\nfunction isObfuscatorEnabledForClass(node) {\n    var flag2 \u003d !node.name.startsWith(\"com/evieclient/mixins\");\n    var flag1 \u003d !node.name.startsWith(\"net/minecraft\");\n    return flag2 \u0026\u0026 flag1;\n}",  "libraries": [],
   "Crasher": {
     "Enabled": false
   },
