@@ -44,10 +44,13 @@ public class Evie {
 
     // Main
     public Evie() {
+        createBuildId();
+        log("Starting Client! EV: " + COMMIT_HASH);
         // Init Sentry
         Sentry.init(options -> {
             options.setDsn("https://24c61932d4a84df79726aee1615ae698@o1101223.ingest.sentry.io/6179220");
             options.setTracesSampleRate(1.0);
+            options.setRelease(COMMIT_HASH);
         });
 
         log("Starting Client!");
@@ -84,7 +87,6 @@ public class Evie {
 
     // Post Launch
     public void postInitialisation() {
-        log("Post Initiation Done! EV: " + COMMIT_HASH);
         MODULE_MANAGER.preInitialisation();
         Evie.EVENT_BUS.register(this);
 
