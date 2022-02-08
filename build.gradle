@@ -112,7 +112,7 @@ dependencies {
             ant.yguard {
                 inoutpair(in: archivePath, out: archivePath.replace(".jar", "_obf.jar"))
 
-                attribute(name: "Deprecated")
+                attribute(name: "EvieTweaker")
                 shrink(logfile: "${buildDir}/yshrink.log.xml") {
                     keep {
                         'class'(classes: 'protected', methods: 'protected', fields: 'protected')
