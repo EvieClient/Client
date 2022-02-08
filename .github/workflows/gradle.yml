@@ -17,7 +17,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: wheres java?
-        run: where java
+        run: whereis java
       - name: Leave a ci note
         run: 'echo "commit: $(git rev-parse --short HEAD)" > ci.txt'
       - name: Build with Gradle
