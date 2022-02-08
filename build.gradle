@@ -23,7 +23,7 @@ apply plugin: 'java'
 
 version = "1.0.0"
 group= "com.evieclient" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "EvieClientClean"
+archivesBaseName = "EvieClient"
 
 sourceCompatibility = targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
