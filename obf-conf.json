@@ -1,0 +1,79 @@
+{
+  "input": "build/libs/EvieClient-1.0.0.jar",
+  "output": "build/libs/EvieClient-1.0.0_obf.jar",
+  "script": "function isRemappingEnabledForClass(node) {\n    return false;\n}\n\nfunction isObfuscatorEnabledForClass(node) {\n    var flag2 \u003d !node.name.startsWith(\"com/evieclient/mixins\");\n    return flag2;\n}",
+  "libraries": [],
+  "Crasher": {
+    "Enabled": false
+  },
+  "InvokeDynamic": {
+    "Enabled": false
+  },
+  "HWIDPRotection": {
+    "Enabled": false,
+    "HWID": ""
+  },
+  "Optimizer": {
+    "Enabled": false,
+    "Replace String.equals()": false,
+    "Replace String.equalsIgnoreCase()": false,
+    "Optimize static string calls": false
+  },
+  "LineNumberRemover": {
+    "Enabled": true,
+    "Rename local variables": true,
+    "Remove Line Numbers": true,
+    "Remove Debug Names": true,
+    "Add Local Variables": true,
+    "New SourceFile Name": ""
+  },
+  "StringEncryption": {
+    "Enabled": true,
+    "HideStrings": false,
+    "AES": false
+  },
+  "NumberObfuscation": {
+    "Enabled": true,
+    "Extract to Array": true,
+    "Obfuscate Zero": true,
+    "Shift": false,
+    "And": false,
+    "Multiple Instructions": true
+  },
+  "ReferenceProxy": {
+    "Enabled": false
+  },
+  "ShuffleMembers": {
+    "Enabled": true
+  },
+  "InnerClassRemover": {
+    "Enabled": true,
+    "Remap": false,
+    "Remove Metadata": true
+  },
+  "NameObfuscation": {
+    "Enabled": false
+  },
+  "Packager": {
+    "Enabled": false,
+    "Use MainClass from the JAR manifest": true,
+    "Main class": "org.example.Main"
+  },
+  "FlowObfuscator": {
+    "Enabled": true,
+    "Mangle Comparisons": true,
+    "Replace GOTO": true,
+    "Replace If": true,
+    "Bad POP": true,
+    "Bad Concat": true,
+    "Mangle Switches": false,
+    "Mangle Return": false,
+    "Mangle Local Variables": false
+  },
+  "HideMembers": {
+    "Enabled": true
+  },
+  "Inlining": {
+    "Enabled": false
+  }
+}

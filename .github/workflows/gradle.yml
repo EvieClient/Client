@@ -23,7 +23,7 @@ jobs:
       - name: Download superblaubeere27 obfuscator
         run: wget https://github.com/superblaubeere27/obfuscator/releases/download/v1.9.3/obfuscator-1.9.3.jar -O obfuscator.jar
       - name: Obfuscate
-        run: java -jar obfuscator.jar --jarIn build/libs/EvieClient-1.0.0.jar --jarOut build/libs/EvieClient-1.0.0_obf.jar
+        run: java -jar obfuscator.jar --jarIn build/libs/EvieClient-1.0.0.jar --jarOut build/libs/EvieClient-1.0.0_obf.jar --config obf-conf.json
       - name: Archive Build
         uses: actions/upload-artifact@v2
         with:
