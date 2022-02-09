@@ -13,6 +13,7 @@
     "client.renderer.entity.ItemRendererMixin",
     "entity.MixinEntityPlayer",
     "entity.MixinEntityPlayerSP",
-    "network.MixinNetHandlerPlayClient"
+    "network.MixinNetHandlerPlayClient",
+    "client.renderer.entity.layers.CapeLayerMixin"
   ]
 }

@@ -6,6 +6,7 @@ import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
+import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.SocketClient;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
@@ -24,6 +25,7 @@ public class Evie {
     public static final File settingsFile = new File(System.getenv("APPDATA") + "/." + NAME.toLowerCase() + "/settings.json");
     public static final Evie INSTANCE = new Evie();
     public static final EventBus EVENT_BUS = new EventBus();
+    public static final Capes ECAPES = new Capes();
     public static String COMMIT_HASH = getCINote();
     public static Minecraft mc = Minecraft.getMinecraft();
 
@@ -51,6 +53,7 @@ public class Evie {
             options.setTracesSampleRate(1.0);
             options.setRelease(COMMIT_HASH);
         });
+
 
         log("Starting Client!");
 
