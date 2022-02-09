@@ -1,12 +1,18 @@
 package com.evieclient.mixins.client.renderer.entity;
 
 import com.evieclient.Evie;
-import net.minecraft.client.*;
-import org.spongepowered.asm.mixin.*;
-import net.minecraft.client.entity.*;
-import org.spongepowered.asm.mixin.injection.callback.*;
-import net.minecraft.client.renderer.*;
-import org.spongepowered.asm.mixin.injection.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.ItemRenderer;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ItemRenderer.class)
 public class    ItemRendererMixin {

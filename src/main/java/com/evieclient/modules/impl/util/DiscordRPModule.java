@@ -2,21 +2,18 @@ package com.evieclient.modules.impl.util;
 
 import com.evieclient.Evie;
 import com.evieclient.events.bus.EventSubscriber;
-import com.evieclient.modules.Category;
-import com.evieclient.modules.Module;
 import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.world.LoadWorldEvent;
+import com.evieclient.modules.Category;
+import com.evieclient.modules.Module;
 import lombok.Getter;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
-import net.arikia.dev.drpc.DiscordUser;
-import net.arikia.dev.drpc.callbacks.ReadyCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.client.network.NetHandlerPlayClient;
 
 public class DiscordRPModule extends Module {
 

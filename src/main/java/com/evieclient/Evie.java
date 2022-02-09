@@ -7,6 +7,7 @@ import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
 import com.evieclient.utils.api.Capes;
+import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
@@ -149,6 +150,7 @@ public class Evie {
     @EventSubscriber
     public void OnL(KeyPressedEvent e) {
         if (e.getKeyCode() == Keyboard.KEY_L) {
+            Evie.log(EviePlayers.Companion.getPlayers().size() + "");
             Boolean enabled = MODULE_MANAGER.oldAnimations.toggle();
             if (enabled) {
                 Minecraft.getMinecraft().thePlayer.playSound("note.pling", 1.0F, 1.0F);

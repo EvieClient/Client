@@ -3,7 +3,6 @@ package com.evieclient.utils.api;
 import co.gongzh.procbridge.Client;
 import io.sentry.Sentry;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SocketClient {

@@ -11,8 +11,6 @@ import java.io.InputStream;
 
 public class LoadTexture {
 
-    public static ResourceLocation EvieIcon = LoadTexture("assets/evie/textures/misc/icon.png");
-
     public static ResourceLocation LoadTexture(String path) {
         BufferedImage bufferedImage;
         try {
