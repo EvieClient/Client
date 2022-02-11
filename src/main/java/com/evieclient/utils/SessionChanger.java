@@ -57,9 +57,9 @@ public class SessionChanger {
 
     //Login with Offline mode
     // TODO: Only allow this function while in a dev environment.
-    public void setUserOffline(String username) throws IllegalAccessException {
+    public void setUserOffline(String username, String uuid) throws IllegalAccessException {
         this.auth.logOut();
-        Session session = new Session(username, username, "0", "legacy");
+        Session session = new Session(username, uuid, "0", "legacy");
         setSession(session);
     }
 

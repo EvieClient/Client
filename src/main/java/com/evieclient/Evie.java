@@ -6,6 +6,7 @@ import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
+import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
@@ -54,7 +55,6 @@ public class Evie {
             options.setTracesSampleRate(1.0);
             options.setRelease(COMMIT_HASH);
         });
-
 
         log("Starting Client!");
 
