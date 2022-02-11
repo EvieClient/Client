@@ -3,6 +3,7 @@ package com.evieclient.utils.api
 import com.evieclient.Evie
 import com.fasterxml.jackson.databind.ObjectMapper
 import net.minecraft.client.Minecraft
+import net.minecraft.util.ChatComponentText
 import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClients
@@ -32,6 +33,8 @@ class EvieRestAPI {
                 Minecraft.getMinecraft().thePlayer.playSound("note.pling", 1.0f, 1.0f)
 
                 Evie.log("Player's Current Cape: ${playerCosmetics.activeCosmetics?.cape}")
+                Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText("${uuid} - ${playerCosmetics.activeCosmetics?.cape}"))
+
             }
         }
     }

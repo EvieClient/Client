@@ -60,7 +60,6 @@ class Capes {
         if (!EviePlayers.playerExists(player.uniqueID.toString())) {
             sentReqForPlayer[player] = AtomicBoolean(false)
             if (sentReqForPlayer[player]!!.compareAndSet(false, true)) {
-                Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText("§aRequesting cape for ${player.name}(${player.uniqueID.toString()})..."))
                 ThreadManager.runAsync(Runnable {
                     EvieRestAPI.reqEviePlayer(player.uniqueID.toString())
                 })
