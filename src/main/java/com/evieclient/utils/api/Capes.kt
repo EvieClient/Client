@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.entity.RenderPlayer
 import net.minecraft.client.renderer.texture.DynamicTexture
 import net.minecraft.entity.player.EnumPlayerModelParts
+import net.minecraft.util.ChatComponentText
 import net.minecraft.util.MathHelper
 import net.minecraft.util.ResourceLocation
 import java.awt.image.BufferedImage
@@ -59,6 +60,7 @@ class Capes {
         if (!EviePlayers.playerExists(player.uniqueID.toString())) {
             sentReqForPlayer[player] = AtomicBoolean(false)
             if (sentReqForPlayer[player]!!.compareAndSet(false, true)) {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText("§aRequesting cape for ${player.name}(${player.uniqueID.toString()})..."))
                 ThreadManager.runAsync(Runnable {
                     EvieRestAPI.reqEviePlayer(player.uniqueID.toString())
                 })
