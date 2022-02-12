@@ -2,6 +2,8 @@ package com.evieclient.utils.api
 
 import com.evieclient.Evie
 import com.google.gson.Gson
+import net.minecraft.client.Minecraft
+import net.minecraft.util.ChatComponentText
 import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClients
@@ -27,11 +29,18 @@ class EvieRestAPI {
                         gson.fromJson(body, PlayerCosmetics::class.java)
                     } catch (e: Exception) {
                         Evie.log("Failed to parse PlayerCosmetics for $name")
+                        Minecraft.getMinecraft().thePlayer.addChatMessage(
+                            ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to parse PlayerCosmetics for $name!")
+                        )
                         println(e)
                         null
                     }
                     val playerCosmetics: PlayerCosmetics = gson.fromJson(body, PlayerCosmetics::class.java)
                     Evie.log("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
+                    Evie.log("Failed to parse PlayerCosmetics for $name")
+                    Minecraft.getMinecraft().thePlayer.addChatMessage(
+                        ChatComponentText("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
+                    )
                     playerCosmetics
                 } else {
                     Evie.log("Error: ${response.statusLine.statusCode}")
