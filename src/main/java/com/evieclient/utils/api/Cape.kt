@@ -11,9 +11,5 @@ class Cape {
     @Expose
     var id: String? = null
 
-    @SerializedName("type")
-    @Expose
-    var type: String? = null
-
     var dynamicCapeTexture: ResourceLocation? = null
 }
