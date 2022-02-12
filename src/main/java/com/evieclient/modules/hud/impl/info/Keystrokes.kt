@@ -121,6 +121,7 @@ class Keystrokes : RenderModule(
                     this.y + key.y + key.height / 2 + 4f,
                     1f
                 )
+                GlStateManager.popMatrix();
                 if (key.name.matches(Regex(Key.LMB.name)) && leftCps) {
                     fr.drawString(
                         "$cPS",
@@ -138,19 +139,18 @@ class Keystrokes : RenderModule(
                     if (key.isDown) Color.PINK.rgb else Color.WHITE.rgb
                 )
             }
-            GlStateManager.popMatrix();
         }
         GL11.glPopMatrix();
     }
 
     private val cPS: Int
-        private get() {
+        get() {
             val time = System.currentTimeMillis()
             clicks.removeIf { aLong: Long -> aLong + 1000 < time }
             return clicks.size
         }
     private val cPS2: Int
-        private get() {
+        get() {
             val time2 = System.currentTimeMillis()
             clicks2.removeIf { aLong2: Long -> aLong2 + 1000 < time2 }
             return clicks2.size
