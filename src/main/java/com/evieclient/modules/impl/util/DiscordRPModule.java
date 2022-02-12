@@ -65,18 +65,15 @@ public class DiscordRPModule extends Module {
     }
 
     @EventSubscriber
-    public void onWorldLoad(LoadWorldEvent event) {
-        if (!Minecraft.getMinecraft().isSingleplayer())
-            this.updateRP("Multiplayer", "Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP, "evieclientlogo", "Evie Client", Minecraft.getMinecraft().getCurrentServerData());
-        else this.updateRP("Singleplayer", "alone...", "evieclientlogo", "Evie Client", null);
-    }
-
-    @EventSubscriber
     public void onTick(GameLoopEvent event) {
         if (Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu)
-            this.updateRP("Main Menu", "In Game", "evieclientlogo", "Evie Client", null);
+            this.updateRP("Main Menu", "In Game", "evielogo", "Evie Client", null);
         else if (Minecraft.getMinecraft().currentScreen instanceof GuiMultiplayer)
-            this.updateRP("Multiplayer Menu", "In Game", "evieclientlogo", "Evie Client", null);
+            this.updateRP("Multiplayer Menu", "In Game", "evielogo", "Evie Client", null);
+
+        if (!Minecraft.getMinecraft().isSingleplayer())
+            this.updateRP("Multiplayer", "Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP, "evielogo", "Evie Client", Minecraft.getMinecraft().getCurrentServerData());
+        else this.updateRP("Singleplayer", "alone...", "evielogo", "Evie Client", null);
     }
 
     /**
@@ -89,7 +86,7 @@ public class DiscordRPModule extends Module {
      **/
     public void updateRP(String line1, String line2, String image, String imageText, ServerData server) {
         DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(line2);
-        b.setBigImage("evieclientlogo", "Evie Client");
+        b.setBigImage("evielogo", "Evie Client");
         if (image != null) {
             b.setSmallImage(image, imageText);
         }
