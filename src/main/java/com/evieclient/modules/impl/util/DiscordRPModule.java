@@ -65,15 +65,18 @@ public class DiscordRPModule extends Module {
     }
 
     @EventSubscriber
+    public void onWorldLoad(LoadWorldEvent event) {
+        if (!Minecraft.getMinecraft().isSingleplayer())
+            this.updateRP("Multiplayer", "Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP, "evieclientlogo", "Evie Client", Minecraft.getMinecraft().getCurrentServerData());
+        else this.updateRP("Singleplayer", "alone...", "evieclientlogo", "Evie Client", null);
+    }
+
+    @EventSubscriber
     public void onTick(GameLoopEvent event) {
         if (Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu)
             this.updateRP("Main Menu", "In Game", "evielogo", "Evie Client", null);
         else if (Minecraft.getMinecraft().currentScreen instanceof GuiMultiplayer)
             this.updateRP("Multiplayer Menu", "In Game", "evielogo", "Evie Client", null);
-
-        if (!Minecraft.getMinecraft().isSingleplayer())
-            this.updateRP("Multiplayer", "Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP, "evielogo", "Evie Client", Minecraft.getMinecraft().getCurrentServerData());
-        else this.updateRP("Singleplayer", "alone...", "evielogo", "Evie Client", null);
     }
 
     /**

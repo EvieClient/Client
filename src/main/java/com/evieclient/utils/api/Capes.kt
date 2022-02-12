@@ -11,13 +11,6 @@ import net.minecraft.util.MathHelper
 import net.minecraft.util.ResourceLocation
 
 class Capes {
-
-    @EventSubscriber
-    fun onWorldLoad(event: LoadWorldEvent?) {
-        Evie.log("Capes: World loaded, clearing cape textures")
-        EviePlayers.clear()
-    }
-
     fun tryRenderCape(playerRenderer: RenderPlayer, player: AbstractClientPlayer, partialTicks: Float): Boolean {
         if (
             !player.hasPlayerInfo()
