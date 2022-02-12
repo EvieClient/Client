@@ -10,10 +10,6 @@ public class SocketClient {
     public static final Client client = new Client("users.websocket.client.evie.pw", 2569);
     public static final HashMap<String, User> users = new HashMap<String, User>();
 
-
-    public static void main(String[] args) {
-    }
-
     public static Boolean registerUser(String username) {
         try {
             String[] arguments = client.request("registerUser", username).toString().split(":");
