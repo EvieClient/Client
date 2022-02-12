@@ -2,10 +2,8 @@ package com.evieclient.mixins.network;
 
 import com.evieclient.events.impl.client.ActionBarEvent;
 import com.evieclient.events.impl.client.ChatReceivedEvent;
-import com.evieclient.events.impl.client.PluginMessageEvent;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.play.server.S02PacketChat;
-import net.minecraft.network.play.server.S3FPacketCustomPayload;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -35,15 +33,4 @@ public class MixinNetHandlerPlayClient {
             callbackInfo.cancel();
         }
     }
-
-    @Inject(at = @At("HEAD"), method = "handleCustomPayload", cancellable = true)
-    private void onPluginMessageReceive(S3FPacketCustomPayload payload, CallbackInfo ci) {
-        PluginMessageEvent event;
-        event = new PluginMessageEvent(payload.getChannelName(), payload.getBufferData());
-        event.post();
-        if (event.isCanceled()) {
-            ci.cancel();
-        }
-    }
-
 }
