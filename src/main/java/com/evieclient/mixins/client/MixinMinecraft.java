@@ -108,7 +108,7 @@ public class MixinMinecraft {
      **/
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;)V", at = @At("HEAD"))
     private void loadWorld(WorldClient worldClient, CallbackInfo callbackInfo) {
-        new LoadWorldEvent(worldClient).post();
+        // new LoadWorldEvent(worldClient).post(); // DEBUG: Seeing if this event crashes the game.
     }
 
 
