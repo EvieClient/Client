@@ -30,8 +30,6 @@ class TexturedCape(id: String) {
             return null
         }
         return if (bufferedImage != null && this.texture == null) {
-            Minecraft.getMinecraft().thePlayer.addChatMessage(
-                ChatComponentText("§a§l[§f§lEvie§a§l] §f§lCape texture loaded for ${id}!"));
             Minecraft.getMinecraft().renderManager.renderEngine.getDynamicTextureLocation(
                 "assets/evie/textures/gui/evie_gradient.png",
                 DynamicTexture(bufferedImage)
