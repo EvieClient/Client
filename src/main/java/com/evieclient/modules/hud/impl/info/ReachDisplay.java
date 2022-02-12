@@ -24,14 +24,12 @@ public class ReachDisplay extends RenderModule {
         int n = 3;
 
         fr.drawStringWithShadow(Double.parseDouble(("" + reach).substring(0, n)) + "", getX(), getY(), -1);
-
     }
 
     @Override
     public int getWidth() {
         return fr.getStringWidth("3.00");
     }
-
 
     @Override
     public int getHeight() {

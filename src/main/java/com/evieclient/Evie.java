@@ -122,6 +122,7 @@ public class Evie {
         Evie.EVENT_BUS.register(this);
 
         MODULE_MANAGER.reachDisplay.toggle();
+        MODULE_MANAGER.keystrokes.toggle();
     }
 
     // Websocket

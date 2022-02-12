@@ -1,11 +1,13 @@
 package com.evieclient.modules;
 
 import com.evieclient.modules.hud.RenderModule;
+import com.evieclient.modules.hud.impl.info.Keystrokes;
 import com.evieclient.modules.hud.impl.info.ReachDisplay;
 import com.evieclient.modules.impl.improvements.OldAnimations;
 import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.modules.impl.util.DiscordRPModule;
 import com.evieclient.modules.impl.util.WindowedFullscreenModule;
+import org.checkerframework.checker.units.qual.K;
 import org.newdawn.slick.SlickException;
 
 import java.awt.*;
@@ -26,7 +28,9 @@ public class ModuleManager {
     public final DiscordRPModule discordRPModule = new DiscordRPModule();
     public final AccountsModule accountsModule = new AccountsModule();
     public final WindowedFullscreenModule windowedFullscreenModule = new WindowedFullscreenModule();
+    // Display Modules
     public final ReachDisplay reachDisplay = new ReachDisplay();
+    public final Keystrokes keystrokes = new Keystrokes();
 
     /**
      * Constructor to created ModuleManager.
@@ -40,8 +44,10 @@ public class ModuleManager {
         this.modules.add(discordRPModule);
         this.modules.add(windowedFullscreenModule);
         this.modules.add(accountsModule);
-        this.modules.add(reachDisplay);
         this.modules.add(oldAnimations);
+        // Display Modules //
+        this.modules.add(reachDisplay);
+        this.modules.add(keystrokes);
     }
 
     /**

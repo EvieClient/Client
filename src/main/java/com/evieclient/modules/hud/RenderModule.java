@@ -20,7 +20,7 @@ public class RenderModule extends Module {
     public RenderModule(String name, String description, Category category, Boolean enabled) {
         super(name, description, category, false);
         fr = mc.fontRendererObj;
-        drag = new DraggableComponent(0, 0, 0 + getWidth(), 0 + getHeight(), new Color(0, 0, 0, 0).getRGB());
+        drag = new DraggableComponent(0, 0, getWidth(), getHeight(), new Color(0, 0, 0, 0).getRGB());
         try {
             customFr = new com.evieclient.utils.render.FontRenderer("ROBOTO", 10);
         } catch (Exception e) {
