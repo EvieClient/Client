@@ -21,6 +21,10 @@ class EviePlayers {
             }
         }
 
+        fun playerHasCape(name: String): Boolean {
+            return players.any { it.name == name && it.cosmetics?.activeCosmetics?.cape != null }
+        }
+
         fun getPlayer(name: String): EviePlayer? {
             return players.find { it.name == name }
         }
