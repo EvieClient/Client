@@ -3,6 +3,8 @@ package com.evieclient.utils.api
 import io.sentry.Sentry
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.texture.DynamicTexture
+import net.minecraft.util.ChatComponentText
+import net.minecraft.util.IChatComponent
 import net.minecraft.util.ResourceLocation
 import java.awt.image.BufferedImage
 import java.net.URL
@@ -28,6 +30,8 @@ class TexturedCape(id: String) {
             return null
         }
         return if (bufferedImage != null && this.texture == null) {
+            Minecraft.getMinecraft().thePlayer.addChatMessage(
+                ChatComponentText("§a§l[§f§lEvie§a§l] §f§lCape texture loaded for ${id}!"));
             Minecraft.getMinecraft().renderManager.renderEngine.getDynamicTextureLocation(
                 "assets/evie/textures/gui/evie_gradient.png",
                 DynamicTexture(bufferedImage)
