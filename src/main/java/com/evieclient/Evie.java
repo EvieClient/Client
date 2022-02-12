@@ -11,6 +11,7 @@ import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.ChatComponentText;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.SlickException;
 
@@ -163,9 +164,11 @@ public class Evie {
             Evie.log(EviePlayers.Companion.getPlayers().size() + "");
             Boolean enabled = MODULE_MANAGER.oldAnimations.toggle();
             if (enabled) {
-                Minecraft.getMinecraft().thePlayer.playSound("note.pling", 1.0F, 1.0F);
+                Minecraft.getMinecraft().thePlayer.addChatMessage(
+                        new ChatComponentText("§a§l[§f§lEvie§a§l] §fOld Animations Enabled!"));
             } else {
-                Minecraft.getMinecraft().thePlayer.playSound("note.snare", 1.0F, 1.0F);
+                Minecraft.getMinecraft().thePlayer.addChatMessage(
+                        new ChatComponentText("§a§l[§f§lEvie§a§l] §fOld Animations Disabled!"));
             }
         }
     }
