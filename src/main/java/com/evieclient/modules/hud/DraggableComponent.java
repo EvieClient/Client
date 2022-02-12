@@ -5,10 +5,10 @@ import org.lwjgl.input.Mouse;
 
 public class DraggableComponent {
 
-    private int x;
-    private int y;
     private final int width;
     private final int height;
+    private int x;
+    private int y;
     private int color;
     private int lastX;
     private int lastY;

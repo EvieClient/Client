@@ -1,10 +1,24 @@
 package com.evieclient.utils.api
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import javax.annotation.Generated
+
+@Generated("jsonschema2pojo")
 class PlayerCosmetics {
-    // example response: {"activeCosmetics":{"cape":{"id":"SimpleEvieCape","type":"cape"}},"dev":false,"eviePlus":false,"media":false}
+    @SerializedName("activeCosmetics")
+    @Expose
     var activeCosmetics: ActiveCosmetics? = null
+
+    @SerializedName("dev")
+    @Expose
     var dev: Boolean? = null
+
+    @SerializedName("eviePlus")
+    @Expose
     var eviePlus: Boolean? = null
+
+    @SerializedName("media")
+    @Expose
     var media: Boolean? = null
-    var message: String? = null
 }

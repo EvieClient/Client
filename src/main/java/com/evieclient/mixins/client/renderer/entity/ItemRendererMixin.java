@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ItemRenderer.class)
-public class    ItemRendererMixin {
+public class ItemRendererMixin {
     @Shadow
     @Final
     private Minecraft mc;

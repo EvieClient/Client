@@ -1,6 +1,12 @@
 package com.evieclient.utils.api
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import javax.annotation.Generated
+
+@Generated("jsonschema2pojo")
 class ActiveCosmetics {
-    var cape: String? = null
-    // var head: Head? = null //TODO: add hats at some point
+    @SerializedName("cape")
+    @Expose
+    var cape: Cape? = null
 }

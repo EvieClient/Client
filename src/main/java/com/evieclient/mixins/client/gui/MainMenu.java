@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
 public class MainMenu extends GuiScreen {
-    @Inject (method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiMainMenu;drawString(Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V", shift = At.Shift.AFTER))
+    @Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiMainMenu;drawString(Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V", shift = At.Shift.AFTER))
     public void drawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         EvieGuiScreen.renderBackgroundImage();
         // credits
-        mc.fontRendererObj.drawString("EvieClient Private Beta ("+ Evie.COMMIT_HASH +")", 0 + 3, this.height - 25, -1);
+        mc.fontRendererObj.drawString("EvieClient Private Beta (" + Evie.COMMIT_HASH + ")", 0 + 3, this.height - 25, -1);
         mc.fontRendererObj.drawString("Copyright Mojang AB. Do not distribute!", 0 + 3, this.height - 15, -1);
     }
 

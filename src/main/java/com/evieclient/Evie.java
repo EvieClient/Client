@@ -6,7 +6,6 @@ import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
-import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
@@ -75,7 +74,18 @@ public class Evie {
      **/
     public static void log(String... message) {
         for (String out : message)
-            System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie] " + out);
+            System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie/" + getCallerClassName() + "] " + out);
+    }
+
+    public static String getCallerClassName() {
+        StackTraceElement[] stElements = Thread.currentThread().getStackTrace();
+        for (int i = 1; i < stElements.length; i++) {
+            StackTraceElement ste = stElements[i];
+            if (!ste.getClassName().equals(Evie.class.getName()) && ste.getClassName().indexOf("java.lang.Thread") != 0) {
+                return ste.getClassName();
+            }
+        }
+        return null;
     }
 
     /**
@@ -86,14 +96,6 @@ public class Evie {
     public static void error(String... message) {
         for (String out : message)
             System.err.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie-Error] " + out);
-    }
-
-    // Post Launch
-    public void postInitialisation() {
-        MODULE_MANAGER.preInitialisation();
-        Evie.EVENT_BUS.register(this);
-
-        MODULE_MANAGER.reachDisplay.toggle();
     }
 
     // Build Info
@@ -114,6 +116,13 @@ public class Evie {
         return "???";
     }
 
+    // Post Launch
+    public void postInitialisation() {
+        MODULE_MANAGER.preInitialisation();
+        Evie.EVENT_BUS.register(this);
+
+        MODULE_MANAGER.reachDisplay.toggle();
+    }
 
     // Websocket
     @EventSubscriber

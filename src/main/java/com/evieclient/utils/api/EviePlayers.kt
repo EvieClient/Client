@@ -2,19 +2,27 @@ package com.evieclient.utils.api
 
 class EviePlayers {
     companion object {
-        val players: HashMap<String, PlayerCosmetics?> = HashMap<String, PlayerCosmetics?>()
+        val players: MutableList<EviePlayer> = mutableListOf()
 
-         fun addPlayer(uuid: String, playerCosmetics: PlayerCosmetics?) {
-            players.put(uuid, playerCosmetics);
+        fun clear() {
+            players.clear()
         }
 
-        fun playerExists(uuid: String): Boolean {
-            return players.containsKey(uuid)
+        private fun createPlayer(name: String) {
+            players.add(EviePlayer(name))
         }
 
-        fun getPlayer(uuid: String): PlayerCosmetics? {
-            return players.get(uuid);
+        fun playerExists(name: String): Boolean {
+            return if (players.any { it.name == name }) {
+                true
+            } else {
+                createPlayer(name)
+                true
+            }
         }
 
+        fun getPlayer(name: String): EviePlayer? {
+            return players.find { it.name == name }
+        }
     }
 }

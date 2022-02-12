@@ -1,54 +1,22 @@
 package com.evieclient.utils.api
 
-import com.evieclient.utils.misc.ThreadManager
-import com.evieclient.utils.render.LoadTexture
-import com.google.gson.Gson
-import io.sentry.Sentry
-import net.minecraft.client.Minecraft
+import com.evieclient.Evie
+import com.evieclient.events.bus.EventSubscriber
+import com.evieclient.events.impl.world.LoadWorldEvent
 import net.minecraft.client.entity.AbstractClientPlayer
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.entity.RenderPlayer
-import net.minecraft.client.renderer.texture.DynamicTexture
 import net.minecraft.entity.player.EnumPlayerModelParts
-import net.minecraft.util.ChatComponentText
 import net.minecraft.util.MathHelper
 import net.minecraft.util.ResourceLocation
-import java.awt.image.BufferedImage
-import java.net.URL
-import java.util.concurrent.atomic.AtomicBoolean
-import javax.imageio.ImageIO
 
 class Capes {
 
-    private val gson = Gson()
-    private val sentReqForPlayer: HashMap<AbstractClientPlayer, AtomicBoolean> = HashMap<AbstractClientPlayer, AtomicBoolean>()
-    private val capeTextures: HashMap<String, ResourceLocation> = HashMap<String, ResourceLocation>()
-
-    fun downloadCape(cid: String) {
-        ThreadManager.runAsync {
-            val textureUrl = "https://evie.pw/api/getCapeTexture?id=$cid"
-            val url = URL(textureUrl)
-
-            val bufferedImage: BufferedImage
-            bufferedImage = try {
-                val inputStream = url.openStream()
-                ImageIO.read(inputStream)
-            } catch (e: Exception) {
-                Sentry.captureException(e)
-                return@runAsync
-            }
-            if (bufferedImage != null) {
-                val resourceLocation = Minecraft.getMinecraft().renderManager.renderEngine.getDynamicTextureLocation(
-                    url.toString(),
-                    DynamicTexture(bufferedImage)
-                )
-                capeTextures[cid] = resourceLocation
-            } else null
-        }
+    @EventSubscriber
+    fun onWorldLoad(event: LoadWorldEvent?) {
+        Evie.log("Capes: World loaded, clearing cape textures")
+        EviePlayers.clear()
     }
-
-
-
 
     fun tryRenderCape(playerRenderer: RenderPlayer, player: AbstractClientPlayer, partialTicks: Float): Boolean {
         if (
@@ -57,28 +25,26 @@ class Capes {
             || !player.isWearing(EnumPlayerModelParts.CAPE)
         ) return false
 
-        if (!EviePlayers.playerExists(player.uniqueID.toString())) {
-            sentReqForPlayer[player] = AtomicBoolean(false)
-            if (sentReqForPlayer[player]!!.compareAndSet(false, true)) {
-                ThreadManager.runAsync(Runnable {
-                    EvieRestAPI.reqEviePlayer(player.uniqueID.toString())
-                })
-            }
+        EviePlayers.playerExists(player.name)
+        if (EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.dynamicCapeTexture == null) {
+            EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.dynamicCapeTexture =
+                TexturedCape(EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.id!!).getResourceLocation()
         }
 
-
-        return if (EviePlayers.playerExists(player.uniqueID.toString()) && EviePlayers.getPlayer(player.uniqueID.toString())?.activeCosmetics?.cape != null) {
-            if(!capeTextures.containsKey(EviePlayers.getPlayer(player.uniqueID.toString())?.activeCosmetics?.cape)) {
-                downloadCape(EviePlayers.getPlayer(player.uniqueID.toString())?.activeCosmetics?.cape!!)
-                false
-            } else {
-                renderCape(playerRenderer, player, partialTicks, capeTextures[EviePlayers.getPlayer(player.uniqueID.toString())?.activeCosmetics?.cape]!!)
-            }
+        return if (EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.dynamicCapeTexture != null) {
+            Evie.log("Capes: Found cape texture for ${player.name}")
+            renderCape(
+                playerRenderer,
+                player,
+                partialTicks,
+                EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.dynamicCapeTexture!!
+            )
+            true
         } else {
             false
         }
-    }
 
+    }
 
     private fun renderCape(
         playerRenderer: RenderPlayer,
