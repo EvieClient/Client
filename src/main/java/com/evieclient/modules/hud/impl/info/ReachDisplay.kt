@@ -8,7 +8,7 @@ class ReachDisplay : RenderModule("ReachDisplay", "View the reach from your last
     var hit: EntityLivingBase? = null
     var reach = 0.0
     override fun renderModule() {
-        hit = mc.pointedEntity as EntityLivingBase
+        hit = mc.pointedEntity as? EntityLivingBase
         if (hit != null) {
             if (hit!!.hurtTime > 0) {
                 reach = (mc.thePlayer.getDistanceToEntity(hit) - 1).toDouble()
