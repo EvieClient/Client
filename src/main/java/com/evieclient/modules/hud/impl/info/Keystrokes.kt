@@ -32,7 +32,7 @@ class Keystrokes : RenderModule(
         );
 
 
-        val keys: Array<Key>;
+        val keys: Array<Key>
 
         init {
             keys = keysIn as Array<Key>
@@ -65,11 +65,11 @@ class Keystrokes : RenderModule(
     private val mode = KeystrokesMode.WASD_JUMP_MOUSE
 
     override fun getWidth(): Int {
-        return 100
+        return 50
     }
 
     override fun getHeight(): Int {
-        return 200
+        return 63
     }
 
     private val clicks: MutableList<Long> = ArrayList()
@@ -80,6 +80,10 @@ class Keystrokes : RenderModule(
     private var lastPressed2: Long = 0
 
     override fun render() {
+        renderModule()
+    }
+
+    override fun renderModule() {
         val lpressed = Mouse.isButtonDown(0)
         val rpressed = Mouse.isButtonDown(1)
         if (lpressed != wasPressed) {
@@ -107,12 +111,12 @@ class Keystrokes : RenderModule(
                 this.y + key.y + key.height,
                 if (key.isDown) Color(255, 255, 255, 102).rgb else Color(0, 0, 0, 150).rgb
             )
-                fr.drawString(
-                    key.name,
-                    this.x + key.x + key.width / 2 - textWidth / 2,
-                    this.y + key.y + key.height / 2 - 4,
-                    if (key.isDown) Color.PINK.rgb else Color.WHITE.rgb
-                )
+            fr.drawString(
+                key.name,
+                this.x + key.x + key.width / 2 - textWidth / 2,
+                this.y + key.y + key.height / 2 - 4,
+                if (key.isDown) Color.PINK.rgb else Color.WHITE.rgb
+            )
             if (key.cps) {
                 GlStateManager.pushMatrix()
                 GlStateManager.scale(0.5f, 0.5f, 0.5f)
@@ -121,9 +125,10 @@ class Keystrokes : RenderModule(
                     this.y + key.y + key.height / 2 + 4f,
                     1f
                 )
+                GlStateManager.popMatrix()
                 if (key.name.matches(Regex(Key.LMB.name)) && leftCps) {
                     fr.drawString(
-                        "$cPS CPS",
+                        "$cPS",
                         this.x + key.x + key.width / 2 - textWidth / 2,
                         this.y + key.y + key.height / 2 + 4,
                         if (key.isDown) Color.PINK.rgb else Color.WHITE.rgb
@@ -132,15 +137,14 @@ class Keystrokes : RenderModule(
             }
             if (key.name.matches(Regex(Key.RMB.name)) && rightCps) {
                 fr.drawString(
-                    "$cPS2 CPS",
+                    "$cPS2",
                     this.x + key.x + key.width / 2 - textWidth / 2,
                     this.y + key.y + key.height / 2 + 4,
                     if (key.isDown) Color.PINK.rgb else Color.WHITE.rgb
                 )
             }
-            GlStateManager.popMatrix();
         }
-        GL11.glPopMatrix();
+        GL11.glPopMatrix()
     }
 
     private val cPS: Int

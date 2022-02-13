@@ -32,7 +32,7 @@ class ArmorStatus :
         }
     }
 
-    override fun render() {
+    override fun renderModule() {
         if (hor) {
             mc.renderItem.renderItemAndEffectIntoGUI(mc.thePlayer.getCurrentArmor(3), x, y + 2)
             mc.renderItem.renderItemAndEffectIntoGUI(mc.thePlayer.getCurrentArmor(2), x + 20, y + 2)
@@ -59,7 +59,7 @@ class ArmorStatus :
         if (`is`.isItemStackDamageable) {
             val health = `is`.itemDamage
             val maxHealth = `is`.maxDamage
-            val healthPercent = health.toFloat() / maxHealth.toFloat() * 100f
+            val healthPercent = health.toFloat() / maxHealth.toFloat()
             val healthWidth = (healthPercent * 16).toInt()
             val healthHeight = 3
             val healthX = x + 16 - healthWidth

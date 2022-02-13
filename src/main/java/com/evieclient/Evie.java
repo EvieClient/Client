@@ -125,6 +125,7 @@ public class Evie {
         MODULE_MANAGER.reachDisplay.toggle();
         MODULE_MANAGER.keystrokes.toggle();
         MODULE_MANAGER.armorStatus.toggle();
+        MODULE_MANAGER.cps.toggle();
     }
 
     // Websocket
@@ -163,13 +164,14 @@ public class Evie {
     public void OnL(KeyPressedEvent e) {
         if (e.getKeyCode() == Keyboard.KEY_L) {
             Evie.log(EviePlayers.Companion.getPlayers().size() + "");
-            Boolean enabled = MODULE_MANAGER.oldAnimations.toggle();
+            boolean enabled = MODULE_MANAGER.oldAnimations.toggle();
+
             if (enabled) {
                 Minecraft.getMinecraft().thePlayer.addChatMessage(
-                        new ChatComponentText("§a§l[§f§lEvie§a§l] §fOld Animations Enabled!"));
+                        new ChatComponentText("§a§l[§f§lEvie§a§l] §fEnabled Old Animations!"));
             } else {
                 Minecraft.getMinecraft().thePlayer.addChatMessage(
-                        new ChatComponentText("§a§l[§f§lEvie§a§l] §fOld Animations Disabled!"));
+                        new ChatComponentText("§a§l[§f§lEvie§a§l] §fDisabled Old Animations!"));
             }
         }
     }

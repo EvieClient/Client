@@ -6,6 +6,7 @@ import com.evieclient.modules.Module;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 
 import java.awt.*;
 
@@ -45,8 +46,21 @@ public class RenderModule extends Module {
         return 0;
     }
 
-    public void render() {
+    public void renderModule() {
     }
+
+    public void render(){
+        // make a background box with a 3 pixel border
+        Gui.drawRect(
+                getX() - 3,
+                getY() - 3,
+                getX() + getWidth() + 3,
+                getY() + getHeight() + 3,
+         new Color(0, 0, 0, 75).getRGB()
+            );
+        renderModule();
+    }
+
 
     public void renderDummy(int cursorX, int cursorY) {
         drag.draw(cursorX, cursorY);
