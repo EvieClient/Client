@@ -44,6 +44,9 @@ class EvieRestAPI {
                     playerCosmetics
                 } else {
                     Evie.log("Error: ${response.statusLine.statusCode}")
+                    Minecraft.getMinecraft().thePlayer.addChatMessage(
+                        ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to request PlayerCosmetics for $name!")
+                    )
                     null
                 }
             }
