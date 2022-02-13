@@ -124,6 +124,7 @@ public class Evie {
 
         MODULE_MANAGER.reachDisplay.toggle();
         MODULE_MANAGER.keystrokes.toggle();
+        MODULE_MANAGER.armorStatus.toggle();
     }
 
     // Websocket

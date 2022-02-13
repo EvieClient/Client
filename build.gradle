@@ -4,7 +4,7 @@ buildscript {
         jcenter()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://files.minecraftforge.net/maven"
         }
         maven {
             name = 'sponge'
@@ -63,7 +63,6 @@ repositories {
     }
     mavenCentral()
     jcenter()
-
 }
 
 configurations {
@@ -81,7 +80,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     embed 'com.fasterxml.jackson.core:jackson-databind:2.0.1'
-
 
     embed 'com.google.code.gson:gson:2.8.5'
     embed 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61'

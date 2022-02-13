@@ -4,6 +4,8 @@ import com.evieclient.modules.Category;
 import com.evieclient.modules.hud.RenderModule;
 import net.minecraft.entity.EntityLivingBase;
 
+import java.awt.*;
+
 public class ReachDisplay extends RenderModule {
 
     EntityLivingBase hit = null;

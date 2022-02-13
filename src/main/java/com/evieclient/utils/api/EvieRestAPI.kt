@@ -19,7 +19,7 @@ class EvieRestAPI {
             try {
                 HttpClients.createDefault().use { client ->
                     val request =
-                        HttpGet("http://localhost:3000/api/getPlayerCosmetics?name=$name")
+                        HttpGet("http://users.restapi.evie.pw/api/getPlayerCosmetics?name=$name")
                     Evie.log("Requesting PlayerCosmetics for $name")
                     val response: HttpResponse = client.execute(request)
                     return if (response.statusLine.statusCode == 200) {

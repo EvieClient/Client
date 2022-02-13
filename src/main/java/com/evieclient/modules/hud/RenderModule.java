@@ -22,7 +22,7 @@ public class RenderModule extends Module {
         fr = mc.fontRendererObj;
         drag = new DraggableComponent(0, 0, getWidth(), getHeight(), new Color(0, 0, 0, 0).getRGB());
         try {
-            customFr = new com.evieclient.utils.render.FontRenderer("ROBOTO", 10);
+            customFr = new com.evieclient.utils.render.FontRenderer("fonts/Roboto-Thin.ttf", 10);
         } catch (Exception e) {
             Sentry.captureException(e);
         }

@@ -1,6 +1,7 @@
 package com.evieclient.modules;
 
 import com.evieclient.modules.hud.RenderModule;
+import com.evieclient.modules.hud.impl.info.ArmorStatus;
 import com.evieclient.modules.hud.impl.info.Keystrokes;
 import com.evieclient.modules.hud.impl.info.ReachDisplay;
 import com.evieclient.modules.impl.improvements.OldAnimations;
@@ -31,6 +32,7 @@ public class ModuleManager {
     // Display Modules
     public final ReachDisplay reachDisplay = new ReachDisplay();
     public final Keystrokes keystrokes = new Keystrokes();
+    public final ArmorStatus armorStatus = new ArmorStatus();
 
     /**
      * Constructor to created ModuleManager.
@@ -48,6 +50,7 @@ public class ModuleManager {
         // Display Modules //
         this.modules.add(reachDisplay);
         this.modules.add(keystrokes);
+        this.modules.add(armorStatus);
     }
 
     /**
