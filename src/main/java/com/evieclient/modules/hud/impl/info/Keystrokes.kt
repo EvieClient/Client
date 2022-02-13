@@ -54,8 +54,8 @@ class Keystrokes : RenderModule(
 
         companion object {
             val W = Key("W", Minecraft.getMinecraft().gameSettings.keyBindForward, 21, 1, 18, 18, false)
-            val A = Key("A", Minecraft.getMinecraft().gameSettings.keyBindBack, 1, 21, 18, 18, false)
-            val S = Key("S", Minecraft.getMinecraft().gameSettings.keyBindLeft, 21, 21, 18, 18, false)
+            val A = Key("A", Minecraft.getMinecraft().gameSettings.keyBindLeft, 1, 21, 18, 18, false)
+            val S = Key("S", Minecraft.getMinecraft().gameSettings.keyBindBack, 21, 21, 18, 18, false)
             val D = Key("D", Minecraft.getMinecraft().gameSettings.keyBindRight, 41, 21, 18, 18, false)
             val LMB = Key("LMB", Minecraft.getMinecraft().gameSettings.keyBindAttack, 1, 41, 28, 18, true)
             val RMB = Key("RMB", Minecraft.getMinecraft().gameSettings.keyBindUseItem, 31, 41, 28, 18, true)
