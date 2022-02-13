@@ -1,8 +1,5 @@
 package com.evieclient.utils.api
 
-import com.evieclient.Evie
-import com.evieclient.events.bus.EventSubscriber
-import com.evieclient.events.impl.world.LoadWorldEvent
 import net.minecraft.client.entity.AbstractClientPlayer
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.entity.RenderPlayer

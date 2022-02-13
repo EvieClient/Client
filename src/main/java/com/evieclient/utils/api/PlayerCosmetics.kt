@@ -1,25 +1,47 @@
 package com.evieclient.utils.api
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import com.fasterxml.jackson.annotation.JsonAnyGetter
+import com.fasterxml.jackson.annotation.JsonAnySetter
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import javax.annotation.Generated
 
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder(*["activeCosmetics", "dev", "eviePlus", "media"])
 @Generated("jsonschema2pojo")
 class PlayerCosmetics {
-    @SerializedName("activeCosmetics")
-    @Expose
+    @get:JsonProperty("activeCosmetics")
+    @set:JsonProperty("activeCosmetics")
+    @JsonProperty("activeCosmetics")
     var activeCosmetics: ActiveCosmetics? = null
 
-    @SerializedName("dev")
-    @Expose
+    @get:JsonProperty("dev")
+    @set:JsonProperty("dev")
+    @JsonProperty("dev")
     var dev: Boolean? = null
 
-    @SerializedName("eviePlus")
-    @Expose
+    @get:JsonProperty("eviePlus")
+    @set:JsonProperty("eviePlus")
+    @JsonProperty("eviePlus")
     var eviePlus: Boolean? = null
 
-    @SerializedName("media")
-    @Expose
+    @get:JsonProperty("media")
+    @set:JsonProperty("media")
+    @JsonProperty("media")
     var media: Boolean? = null
+
+    @JsonIgnore
+    private val additionalProperties: MutableMap<String, Any> = HashMap()
+    @JsonAnyGetter
+    fun getAdditionalProperties(): Map<String, Any> {
+        return additionalProperties
+    }
+
+    @JsonAnySetter
+    fun setAdditionalProperty(name: String, value: Any) {
+        additionalProperties[name] = value
+    }
 }

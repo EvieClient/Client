@@ -1,7 +1,7 @@
 package com.evieclient.utils.api
 
 import com.evieclient.Evie
-import com.google.gson.Gson
+import com.fasterxml.jackson.databind.ObjectMapper
 import net.minecraft.client.Minecraft
 import net.minecraft.util.ChatComponentText
 import org.apache.http.HttpResponse
@@ -13,8 +13,9 @@ import org.apache.http.util.EntityUtils
 class EvieRestAPI {
     companion object {
 
+        val objectMapper = ObjectMapper()
+
         fun getPlayerCosmetics(name: String): PlayerCosmetics? {
-            val gson = Gson()
             try {
                 HttpClients.createDefault().use { client ->
                     val request =
@@ -26,8 +27,7 @@ class EvieRestAPI {
                         val body = EntityUtils.toString(response.entity)
                         Evie.log("Body: $body")
                         try {
-                            gson.fromJson(body, PlayerCosmetics::class.java)
-                            val playerCosmetics: PlayerCosmetics = gson.fromJson(body, PlayerCosmetics::class.java)
+                            val playerCosmetics: PlayerCosmetics = objectMapper.readValue(body, PlayerCosmetics::class.java)
                             Evie.log("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
                             Evie.log("Failed to parse PlayerCosmetics for $name")
                             Minecraft.getMinecraft().thePlayer.addChatMessage(

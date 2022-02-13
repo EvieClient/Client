@@ -1,15 +1,32 @@
 package com.evieclient.utils.api
 
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.*
 import net.minecraft.util.ResourceLocation
+import java.util.*
+import javax.annotation.Generated
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder("id")
 @Generated("jsonschema2pojo")
 class Cape {
-    @SerializedName("id")
-    @Expose
+    @get:JsonProperty("id")
+    @set:JsonProperty("id")
+    @JsonProperty("id")
     var id: String? = null
 
+    @JsonIgnore
+    private val additionalProperties: MutableMap<String, Any> = HashMap()
+    @JsonAnyGetter
+    fun getAdditionalProperties(): Map<String, Any> {
+        return additionalProperties
+    }
+
+    @JsonAnySetter
+    fun setAdditionalProperty(name: String, value: Any) {
+        additionalProperties[name] = value
+    }
+
     var dynamicCapeTexture: ResourceLocation? = null
+
 }
