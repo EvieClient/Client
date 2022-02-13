@@ -12,10 +12,10 @@ class EviePlayer(name: String) {
 //        Minecraft.getMinecraft().thePlayer.addChatMessage(
 //            ChatComponentText("§a§l[§f§lEvie§a§l] §fMade a new EviePlayer Component for ${name}!")
 //        );
-        ThreadManager.runAsync(Runnable {
+        //ThreadManager.runAsync(Runnable {
             val cosmetics: PlayerCosmetics? = EvieRestAPI.getPlayerCosmetics(name)
             this.cosmetics = cosmetics
-        })
+        //})
     }
 
 }
