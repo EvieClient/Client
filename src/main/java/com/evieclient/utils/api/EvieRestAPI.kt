@@ -27,21 +27,21 @@ class EvieRestAPI {
                         Evie.log("Body: $body")
                         try {
                             gson.fromJson(body, PlayerCosmetics::class.java)
+                            val playerCosmetics: PlayerCosmetics = gson.fromJson(body, PlayerCosmetics::class.java)
+                            Evie.log("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
+                            Evie.log("Failed to parse PlayerCosmetics for $name")
+                            Minecraft.getMinecraft().thePlayer.addChatMessage(
+                                ChatComponentText("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
+                            )
+                            playerCosmetics
                         } catch (e: Exception) {
                             Evie.log("Failed to parse PlayerCosmetics for $name")
                             Minecraft.getMinecraft().thePlayer.addChatMessage(
-                                ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to parse PlayerCosmetics for $name!")
+                                ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to parse PlayerCosmetics for $name! | §c§l${e.message}")
                             )
                             println(e)
                             null
                         }
-                        val playerCosmetics: PlayerCosmetics = gson.fromJson(body, PlayerCosmetics::class.java)
-                        Evie.log("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
-                        Evie.log("Failed to parse PlayerCosmetics for $name")
-                        Minecraft.getMinecraft().thePlayer.addChatMessage(
-                            ChatComponentText("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
-                        )
-                        playerCosmetics
                     } else {
                         Evie.log("Error: ${response.statusLine.statusCode}")
                         Minecraft.getMinecraft().thePlayer.addChatMessage(
