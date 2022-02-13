@@ -1,9 +1,9 @@
 package com.evieclient.utils.api
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import net.minecraft.util.ResourceLocation
-import javax.annotation.Generated
 
 @Generated("jsonschema2pojo")
 class Cape {
