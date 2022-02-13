@@ -15,43 +15,53 @@ class EvieRestAPI {
 
         fun getPlayerCosmetics(name: String): PlayerCosmetics? {
             val gson = Gson()
-
-            HttpClients.createDefault().use { client ->
-                val request =
-                    HttpGet("https://evie.pw/api/getPlayerCosmetics?name=$name")
-                Evie.log("Requesting PlayerCosmetics for $name")
-                val response: HttpResponse = client.execute(request)
-                return if (response.statusLine.statusCode == 200) {
-                    Evie.log("Successfully retrieved PlayerCosmetics for $name")
-                    val body = EntityUtils.toString(response.entity)
-                    Evie.log("Body: $body")
-                    try {
-                        gson.fromJson(body, PlayerCosmetics::class.java)
-                    } catch (e: Exception) {
+            try {
+                HttpClients.createDefault().use { client ->
+                    val request =
+                        HttpGet("https://evie.pw/api/getPlayerCosmetics?name=$name")
+                    Evie.log("Requesting PlayerCosmetics for $name")
+                    val response: HttpResponse = client.execute(request)
+                    return if (response.statusLine.statusCode == 200) {
+                        Evie.log("Successfully retrieved PlayerCosmetics for $name")
+                        val body = EntityUtils.toString(response.entity)
+                        Evie.log("Body: $body")
+                        try {
+                            gson.fromJson(body, PlayerCosmetics::class.java)
+                        } catch (e: Exception) {
+                            Evie.log("Failed to parse PlayerCosmetics for $name")
+                            Minecraft.getMinecraft().thePlayer.addChatMessage(
+                                ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to parse PlayerCosmetics for $name!")
+                            )
+                            println(e)
+                            null
+                        }
+                        val playerCosmetics: PlayerCosmetics = gson.fromJson(body, PlayerCosmetics::class.java)
+                        Evie.log("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
                         Evie.log("Failed to parse PlayerCosmetics for $name")
                         Minecraft.getMinecraft().thePlayer.addChatMessage(
-                            ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to parse PlayerCosmetics for $name!")
+                            ChatComponentText("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
                         )
-                        println(e)
+                        playerCosmetics
+                    } else {
+                        Evie.log("Error: ${response.statusLine.statusCode}")
+                        Minecraft.getMinecraft().thePlayer.addChatMessage(
+                            ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to request PlayerCosmetics for $name!")
+                        )
                         null
                     }
-                    val playerCosmetics: PlayerCosmetics = gson.fromJson(body, PlayerCosmetics::class.java)
-                    Evie.log("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
-                    Evie.log("Failed to parse PlayerCosmetics for $name")
-                    Minecraft.getMinecraft().thePlayer.addChatMessage(
-                        ChatComponentText("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
-                    )
-                    playerCosmetics
-                } else {
-                    Evie.log("Error: ${response.statusLine.statusCode}")
-                    Minecraft.getMinecraft().thePlayer.addChatMessage(
-                        ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to request PlayerCosmetics for $name!")
-                    )
-                    null
                 }
+            } catch (e: Exception) {
+                Evie.log("Failed to request PlayerCosmetics for $name")
+                Minecraft.getMinecraft().thePlayer.addChatMessage(
+                    ChatComponentText("§a§l[§f§lEvie§a§l] §fFailed to request PlayerCosmetics for $name!")
+                )
+                println(e)
+                null
             }
+            return null
         }
     }
 }
+
 
 

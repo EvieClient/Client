@@ -1,8 +1,6 @@
 package com.evieclient.utils.api
 
 import com.evieclient.utils.misc.ThreadManager
-import net.minecraft.client.Minecraft
-import net.minecraft.util.ChatComponentText
 
 class EviePlayer(name: String) {
     var cosmetics: PlayerCosmetics? = null
