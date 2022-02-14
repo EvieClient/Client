@@ -126,6 +126,7 @@ public class Evie {
         MODULE_MANAGER.keystrokes.toggle();
         MODULE_MANAGER.armorStatus.toggle();
         MODULE_MANAGER.cps.toggle();
+        MODULE_MANAGER.autoGG.toggle();
     }
 
     // Websocket

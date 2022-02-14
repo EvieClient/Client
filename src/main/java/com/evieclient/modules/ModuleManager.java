@@ -5,6 +5,7 @@ import com.evieclient.modules.hud.impl.info.ArmorStatus;
 import com.evieclient.modules.hud.impl.info.CPS;
 import com.evieclient.modules.hud.impl.info.Keystrokes;
 import com.evieclient.modules.hud.impl.info.ReachDisplay;
+import com.evieclient.modules.impl.hypixel.AutoGG;
 import com.evieclient.modules.impl.improvements.OldAnimations;
 import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.modules.impl.util.DiscordRPModule;
@@ -30,6 +31,7 @@ public class ModuleManager {
     public final DiscordRPModule discordRPModule = new DiscordRPModule();
     public final AccountsModule accountsModule = new AccountsModule();
     public final WindowedFullscreenModule windowedFullscreenModule = new WindowedFullscreenModule();
+    public final AutoGG autoGG = new AutoGG();
     // Display Modules
     public final ReachDisplay reachDisplay = new ReachDisplay();
     public final Keystrokes keystrokes = new Keystrokes();
@@ -49,6 +51,7 @@ public class ModuleManager {
         this.modules.add(windowedFullscreenModule);
         this.modules.add(accountsModule);
         this.modules.add(oldAnimations);
+        this.modules.add(autoGG);
         // Display Modules //
         this.modules.add(reachDisplay);
         this.modules.add(keystrokes);
