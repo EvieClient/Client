@@ -15,6 +15,7 @@ class ActiveCosmetics {
 
     @JsonIgnore
     private val additionalProperties: MutableMap<String, Any> = HashMap()
+
     @JsonAnyGetter
     fun getAdditionalProperties(): Map<String, Any> {
         return additionalProperties

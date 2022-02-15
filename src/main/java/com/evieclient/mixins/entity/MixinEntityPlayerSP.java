@@ -1,5 +1,6 @@
 package com.evieclient.mixins.entity;
 
+import com.evieclient.Evie;
 import com.evieclient.events.impl.client.PlayerChatEvent;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetHandlerPlayClient;
@@ -30,6 +31,7 @@ public class MixinEntityPlayerSP {
     @Overwrite
     public void sendChatMessage(String message) {
         if (message != null) {
+            Evie.log("sending message!")
             PlayerChatEvent event = new PlayerChatEvent(message);
             if (!event.isCanceled()) {
                 this.sendQueue.addToSendQueue(new C01PacketChatMessage(event.getMessage()));

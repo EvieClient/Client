@@ -2,8 +2,6 @@ package com.evieclient.utils.api
 
 import com.evieclient.Evie
 import com.fasterxml.jackson.databind.ObjectMapper
-import net.minecraft.client.Minecraft
-import net.minecraft.util.ChatComponentText
 import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClients
@@ -27,7 +25,8 @@ class EvieRestAPI {
                         val body = EntityUtils.toString(response.entity)
                         Evie.log("Body: $body")
                         try {
-                            val playerCosmetics: PlayerCosmetics = objectMapper.readValue(body, PlayerCosmetics::class.java)
+                            val playerCosmetics: PlayerCosmetics =
+                                objectMapper.readValue(body, PlayerCosmetics::class.java)
 //                            Evie.log("Current Cape for $name: ${playerCosmetics.activeCosmetics?.cape?.id}")
 //                            Evie.log("Failed to parse PlayerCosmetics for $name")
 //                            Minecraft.getMinecraft().thePlayer.addChatMessage(

@@ -1,5 +1,7 @@
 package com.evieclient;
 
+import com.evieclient.commands.CommandManager;
+import com.evieclient.commands.EvieCommandHandler;
 import com.evieclient.events.bus.EventBus;
 import com.evieclient.events.bus.EventSubscriber;
 import com.evieclient.events.impl.client.GameLoopEvent;
@@ -9,6 +11,7 @@ import com.evieclient.modules.hud.HUDConfigScreen;
 import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
+import com.evieclient.utils.chat.ChatHandler;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
@@ -30,16 +33,19 @@ public class Evie {
     public static final Capes ECAPES = new Capes();
     public static String COMMIT_HASH = getCINote();
     public static Minecraft mc = Minecraft.getMinecraft();
+    public static ChatHandler chatHandler = new ChatHandler();
+    public static EvieCommandHandler commandHandler = new EvieCommandHandler();
 
     // Module Manager
     public static ModuleManager MODULE_MANAGER = null;
+    public static CommandManager COMMAND_MANAGER = new CommandManager();
+
 
     static {
         try {
             MODULE_MANAGER = new ModuleManager();
         } catch (SlickException | IOException | FontFormatException e) {
             e.printStackTrace();
-            Sentry.captureException(e);
         }
     }
 

@@ -16,7 +16,7 @@ class Capes {
         ) return false
 
 
-        if(EviePlayers.playerExists(player.name)) {
+        if (EviePlayers.playerExists(player.name)) {
             if (EviePlayers.playerHasCape(player.name)) {
                 if (EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.dynamicCapeTexture == null) {
                     EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.dynamicCapeTexture =

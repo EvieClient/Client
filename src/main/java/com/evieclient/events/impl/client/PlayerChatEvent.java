@@ -1,5 +1,6 @@
 package com.evieclient.events.impl.client;
 
+import com.evieclient.Evie;
 import com.evieclient.events.CancelableEvent;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ public class PlayerChatEvent extends CancelableEvent {
 
     @Getter
     @Setter
-    private String message;
+    public String message;
 
     /**
      * @param chatMessage message being sent to the server

@@ -3,8 +3,6 @@ package com.evieclient.utils.api
 import io.sentry.Sentry
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.texture.DynamicTexture
-import net.minecraft.util.ChatComponentText
-import net.minecraft.util.IChatComponent
 import net.minecraft.util.ResourceLocation
 import java.awt.image.BufferedImage
 import java.net.URL
