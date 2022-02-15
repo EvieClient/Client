@@ -2,6 +2,7 @@ package com.evieclient.mixins.client.gui;
 
 import com.evieclient.Evie;
 import com.evieclient.utils.render.EvieGuiScreen;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
