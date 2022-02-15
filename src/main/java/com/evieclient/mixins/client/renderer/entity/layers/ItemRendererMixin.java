@@ -26,6 +26,36 @@ public abstract class ItemRendererMixin {
     @Shadow private float prevEquippedProgress;
     @Shadow private float equippedProgress;
     @Shadow private ItemStack itemToRender;
+    /**
+     * @author twisttaan
+     * Use mixins instead of casting.
+     */
+    @Shadow
+    private void renderItemMap(AbstractClientPlayer clientPlayer, float pitch, float equipmentProgress, float swingProgress) {}
+
+    @Shadow
+    private void rotateArroundXAndY(float angle, float angleY) {}
+
+    @Shadow
+    private void setLightMapFromPlayer(AbstractClientPlayer clientPlayer) {}
+
+    @Shadow
+    private void rotateWithPlayerRotations(EntityPlayerSP entityplayerspIn, float partialTicks) {}
+
+    @Shadow
+    private void doBlockTransformations() {}
+
+    @Shadow
+    private void doBowTransformations(float partialTicks, AbstractClientPlayer clientPlayer) {}
+
+    @Shadow
+    private void doItemUsedTransformations(float swingProgress) {}
+
+    @Shadow
+    private void renderPlayerArm(AbstractClientPlayer clientPlayer, float equipProgress, float swingProgress) {}
+
+    @Shadow
+    private void performDrinking(AbstractClientPlayer clientPlayer, float partialTicks) {}
 
     @Shadow public abstract void renderItem(EntityLivingBase entityIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform);
 
@@ -66,37 +96,6 @@ public abstract class ItemRendererMixin {
         GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale(0.4F, 0.4F, 0.4F);
     }
-
-    /**
-     * @author twisttaan
-     * Use mixins instead of casting.
-     */
-    @Shadow
-    private void renderItemMap(AbstractClientPlayer clientPlayer, float pitch, float equipmentProgress, float swingProgress) {}
-
-    @Shadow
-    private void rotateArroundXAndY(float angle, float angleY) {}
-
-    @Shadow
-    private void setLightMapFromPlayer(AbstractClientPlayer clientPlayer) {}
-
-    @Shadow
-    private void rotateWithPlayerRotations(EntityPlayerSP entityplayerspIn, float partialTicks) {}
-
-    @Shadow
-    private void doBlockTransformations() {}
-
-    @Shadow
-    private void doBowTransformations(float partialTicks, AbstractClientPlayer clientPlayer) {}
-
-    @Shadow
-    private void doItemUsedTransformations(float swingProgress) {}
-
-    @Shadow
-    private void renderPlayerArm(AbstractClientPlayer clientPlayer, float equipProgress, float swingProgress) {}
-
-    @Shadow
-    private void performDrinking(AbstractClientPlayer clientPlayer, float partialTicks) {}
 
     private void attemptSwing() {
         if (mc.thePlayer.getItemInUseCount() > 0) {
