@@ -1,6 +1,8 @@
 package com.evieclient.commands
 
 import com.evieclient.commands.impl.Evie
+import com.evieclient.events.bus.EventSubscriber
+import com.evieclient.events.impl.client.PlayerChatEvent
 import com.evieclient.modules.Module
 import com.evieclient.modules.impl.improvements.OldAnimations
 import com.evieclient.modules.impl.util.DiscordRPModule
@@ -25,7 +27,6 @@ class CommandManager {
     // Settings file used to save setting states.
     val commands = ArrayList<BaseCommand>()
     val evie = Evie()
-
 
     /**
      * Constructor to created ModuleManager.

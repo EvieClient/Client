@@ -6,6 +6,7 @@ import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.world.LoadWorldEvent;
 import com.evieclient.modules.Category;
 import com.evieclient.modules.Module;
+import com.evieclient.modules.impl.improvements.OldAnimations;
 import lombok.Getter;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRPC;
@@ -26,7 +27,7 @@ public class DiscordRPModule extends Module {
     }
 
     @Override
-    public void setupModule() {
+    public OldAnimations setupModule() {
         this.created = System.currentTimeMillis();
         Evie.log("Setting up DRPC");
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
@@ -52,6 +53,7 @@ public class DiscordRPModule extends Module {
                 }
             }
         }.start();
+        return null;
     }
 
     @Override

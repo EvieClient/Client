@@ -5,6 +5,7 @@ import com.evieclient.commands.EvieCommandHandler;
 import com.evieclient.events.bus.EventBus;
 import com.evieclient.events.bus.EventSubscriber;
 import com.evieclient.events.impl.client.GameLoopEvent;
+import com.evieclient.events.impl.client.PlayerChatEvent;
 import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
@@ -133,6 +134,11 @@ public class Evie {
         MODULE_MANAGER.armorStatus.toggle();
         MODULE_MANAGER.cps.toggle();
         MODULE_MANAGER.autoGG.toggle();
+    }
+
+    @EventSubscriber
+    public void onChat(PlayerChatEvent event){
+        com.evieclient.Evie.commandHandler.onChat(event);
     }
 
     // Websocket

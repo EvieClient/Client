@@ -9,9 +9,10 @@
     "client.gui.GuiIngameMixin",
     "client.gui.MainMenu",
     "client.gui.NewChat",
-    "client.renderer.entity.ItemRendererMixin",
+    "client.renderer.entity.LayerHeldItemMixin",
     "client.renderer.entity.RenderMixin",
     "client.renderer.entity.layers.CapeLayerMixin",
+    "client.renderer.entity.layers.ItemRendererMixin",
     "entity.MixinEntityPlayer",
     "entity.MixinEntityPlayerSP",
     "network.MixinNetHandlerPlayClient"

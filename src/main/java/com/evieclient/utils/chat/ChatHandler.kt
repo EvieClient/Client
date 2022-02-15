@@ -17,10 +17,6 @@ class ChatHandler {
      * @param component the Chat Component to send.
      */
     fun sendMessage(text: String) {
-        var component: ChatComponentText = ChatComponentText(text)
-        if (text == null) {
-            component = ChatComponentText("")
-        }
         messages.add(ChatComponentText(text))
     }
 

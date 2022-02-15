@@ -30,20 +30,17 @@ class EvieCommandHandler {
     private var runningCommand = false
 
 
-    @EventSubscriber
     fun onChat(event: PlayerChatEvent) {
-        Evie.log("found message!")
         val chatLine: String = event.message
         // Attempt to execute command if necessary
         if (chatLine.startsWith("/") && chatLine.length > 1 && executeCommand(chatLine)) {
-            Evie.log("found command!")
-            // It is one of our commands, we'll cancel the event so it isn't
+            // It is one of our commands, we'll cancel the event, so it isn't
             // sent to the server, and we'll close the currently opened gui
             event.cancel()
-           // if (runningCommand) {
+            if (runningCommand) {
                 mc.displayGuiScreen(null)
-             //   runningCommand = false
-            //}
+                runningCommand = false
+            }
         }
     }
 
@@ -54,8 +51,6 @@ class EvieCommandHandler {
      * @return Whether the command was successfully executed
      */
     fun executeCommand(command: String): Boolean {
-        Evie.log("running command!")
-
         val commandLine = if (command.startsWith("/")) command.substring(1) else command
         val commandName: String
         var args = arrayOf<String>()

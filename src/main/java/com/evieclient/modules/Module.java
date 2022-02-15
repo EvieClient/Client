@@ -1,6 +1,7 @@
 package com.evieclient.modules;
 
 import com.evieclient.Evie;
+import com.evieclient.modules.impl.improvements.OldAnimations;
 import com.evieclient.settings.Setting;
 import lombok.Getter;
 import lombok.Setter;
@@ -107,8 +108,10 @@ public class Module {
      * Called on startup
      *
      * @see #moduleSetup()
-     **/
-    public void setupModule() {
+     *
+     * @return*/
+    public OldAnimations setupModule() {
+        return null;
     }
 
     /**

@@ -31,8 +31,8 @@ public class MixinEntityPlayerSP {
     @Overwrite
     public void sendChatMessage(String message) {
         if (message != null) {
-            Evie.log("sending message!")
             PlayerChatEvent event = new PlayerChatEvent(message);
+            event.post();
             if (!event.isCanceled()) {
                 this.sendQueue.addToSendQueue(new C01PacketChatMessage(event.getMessage()));
             }

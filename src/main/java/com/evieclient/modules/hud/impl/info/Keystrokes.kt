@@ -126,22 +126,6 @@ class Keystrokes : RenderModule(
                     1f
                 )
                 GlStateManager.popMatrix()
-                if (key.name.matches(Regex(Key.LMB.name)) && leftCps) {
-                    fr.drawString(
-                        "$cPS",
-                        this.x + key.x + key.width / 2 - textWidth / 2,
-                        this.y + key.y + key.height / 2 + 4,
-                        if (key.isDown) Color.PINK.rgb else Color.WHITE.rgb
-                    )
-                }
-            }
-            if (key.name.matches(Regex(Key.RMB.name)) && rightCps) {
-                fr.drawString(
-                    "$cPS2",
-                    this.x + key.x + key.width / 2 - textWidth / 2,
-                    this.y + key.y + key.height / 2 + 4,
-                    if (key.isDown) Color.PINK.rgb else Color.WHITE.rgb
-                )
             }
         }
         GL11.glPopMatrix()
