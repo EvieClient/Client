@@ -57,7 +57,8 @@ public abstract class ItemRendererMixin {
     @Shadow
     private void performDrinking(AbstractClientPlayer clientPlayer, float partialTicks) {}
 
-    @Shadow public abstract void renderItem(EntityLivingBase entityIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform);
+    @Shadow
+    public abstract void renderItem(EntityLivingBase entityIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform);
 
     /**
      * @author asbyth

@@ -2,6 +2,7 @@ package com.evieclient.modules.hud
 
 import com.evieclient.Evie
 import com.evieclient.utils.shader.BlurShader
+import com.evieclient.utils.shader.GLRenderer
 import com.evieclient.utils.ui.EvieLogo
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.gui.GuiScreen
@@ -11,6 +12,14 @@ class HUDConfigScreen : GuiScreen() {
 
     private val evieLogo = EvieLogo()
     private val blurShader = BlurShader()
+
+    override fun onGuiClosed() {
+        blurShader.stop()
+    }
+
+    override fun initGui() {
+        blurShader.start()
+    }
 
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
@@ -27,10 +36,13 @@ class HUDConfigScreen : GuiScreen() {
             )
         )
 
+        // draw an outline around the screen in light purple
+        // int x, int y, int x1, int y1, int width, Color color
+
+
         evieLogo.draw(this.width / 2 - 50, this.height / 2 - 50, 100)
 
         // drawDefaultBackground()
-        blurShader.start()
 
         for (m in Evie.MODULE_MANAGER.renderModuleList) {
             m.renderDummy(mouseX, mouseY)

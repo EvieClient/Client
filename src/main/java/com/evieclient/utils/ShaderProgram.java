@@ -49,6 +49,7 @@ public abstract class ShaderProgram {
                 shaderSource.append(line).append("\n");
             }
         } catch (FileNotFoundException e) {
+            Sentry.captureException(e);
             e.printStackTrace();
             System.exit(-1);
         } catch (IOException e) {
