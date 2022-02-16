@@ -1,7 +1,7 @@
 {
   "input": "build/libs/EvieClient-1.0.0.jar",
   "output": "build/libs/EvieClient-1.0.0_obf.jar",
-  "script": "function isRemappingEnabledForClass(node) {\n    return false;\n}\n\nfunction isObfuscatorEnabledForClass(node) {\n    var flag1 \u003d node.name.startsWith(\"com/evieclient\");\n    return flag1;\n}",
+  "script": "function isRemappingEnabledForClass(node) {\n    return false;\n}\n\nfunction isObfuscatorEnabledForClass(node) {\n    var flag1 \u003d node.name.startsWith(\"com/evieclient\");\n    return false;\n}",
   "libraries": [],
   "Crasher": {
     "Enabled": false
