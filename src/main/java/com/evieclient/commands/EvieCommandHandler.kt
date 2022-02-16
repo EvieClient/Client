@@ -1,7 +1,6 @@
 package com.evieclient.commands
 
 import com.evieclient.Evie
-import com.evieclient.events.bus.EventSubscriber
 import com.evieclient.events.impl.client.PlayerChatEvent
 import com.evieclient.utils.chat.ChatColor
 import com.evieclient.utils.chat.ChatHandler

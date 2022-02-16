@@ -1,10 +1,7 @@
 package com.evieclient.modules.hud;
 
-import com.evieclient.utils.shader.GLRenderer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Mouse;
-import java.awt.Color;
 
 public class DraggableComponent {
 

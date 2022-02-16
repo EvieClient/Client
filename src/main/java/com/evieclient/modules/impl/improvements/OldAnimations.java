@@ -1,7 +1,5 @@
 package com.evieclient.modules.impl.improvements;
 
-import com.evieclient.Evie;
-import com.evieclient.handlers.AnimationEventHandler;
 import com.evieclient.modules.Category;
 import com.evieclient.modules.Module;
 

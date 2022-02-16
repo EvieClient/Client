@@ -1,6 +1,5 @@
 package com.evieclient.mixins.entity;
 
-import com.evieclient.Evie;
 import com.evieclient.events.impl.client.PlayerChatEvent;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.entity.AbstractClientPlayer;

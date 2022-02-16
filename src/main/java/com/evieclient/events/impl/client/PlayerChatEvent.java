@@ -1,6 +1,5 @@
 package com.evieclient.events.impl.client;
 
-import com.evieclient.Evie;
 import com.evieclient.events.CancelableEvent;
 import lombok.Getter;
 import lombok.Setter;

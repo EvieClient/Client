@@ -1,9 +1,8 @@
 package com.evieclient.events.impl.client
 
-import com.evieclient.Evie
-import net.minecraft.util.IChatComponent
 import com.evieclient.events.CancelableEvent
 import lombok.Getter
+import net.minecraft.util.IChatComponent
 
 /**
  * Fired when the client receives a chat packet, and it is not an action bar packet.

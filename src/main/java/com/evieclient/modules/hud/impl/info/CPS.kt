@@ -2,9 +2,8 @@ package com.evieclient.modules.hud.impl.info
 
 import com.evieclient.modules.Category
 import com.evieclient.modules.hud.RenderModule
-import net.minecraft.entity.EntityLivingBase
 import org.lwjgl.input.Mouse
-import java.util.ArrayList
+import java.util.*
 
 class CPS : RenderModule("CPS", "View your CPS", Category.INFO, true) {
     private val clicks: MutableList<Long> = ArrayList()

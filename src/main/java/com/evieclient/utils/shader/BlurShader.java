@@ -1,6 +1,7 @@
 package com.evieclient.utils.shader;
 
 import com.evieclient.utils.ShaderProgram;
+
 import java.io.InputStream;
 
 public class BlurShader extends ShaderProgram {

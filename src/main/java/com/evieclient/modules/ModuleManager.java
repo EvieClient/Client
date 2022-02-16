@@ -10,7 +10,6 @@ import com.evieclient.modules.impl.improvements.OldAnimations;
 import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.modules.impl.util.DiscordRPModule;
 import com.evieclient.modules.impl.util.WindowedFullscreenModule;
-import org.checkerframework.checker.units.qual.K;
 import org.newdawn.slick.SlickException;
 
 import java.awt.*;

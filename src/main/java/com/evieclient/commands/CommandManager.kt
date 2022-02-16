@@ -1,20 +1,7 @@
 package com.evieclient.commands
 
 import com.evieclient.commands.impl.Evie
-import com.evieclient.events.bus.EventSubscriber
-import com.evieclient.events.impl.client.PlayerChatEvent
-import com.evieclient.modules.Module
-import com.evieclient.modules.impl.improvements.OldAnimations
-import com.evieclient.modules.impl.util.DiscordRPModule
-import com.evieclient.modules.impl.util.AccountsModule
-import com.evieclient.modules.impl.util.WindowedFullscreenModule
-import com.evieclient.modules.impl.hypixel.AutoGG
-import com.evieclient.modules.hud.impl.info.ReachDisplay
-import com.evieclient.modules.hud.impl.info.Keystrokes
-import com.evieclient.modules.hud.impl.info.ArmorStatus
-import com.evieclient.modules.hud.impl.info.CPS
-import com.evieclient.modules.hud.RenderModule
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Holds all commands and registers commands.

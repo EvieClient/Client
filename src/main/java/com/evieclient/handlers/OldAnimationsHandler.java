@@ -1,11 +1,8 @@
 package com.evieclient.handlers;
 
 import com.evieclient.Evie;
-import com.evieclient.events.bus.EventSubscriber;
-import com.evieclient.events.impl.client.RenderEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -16,8 +13,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.MovingObjectPosition;
 
 /*
  * Thanks asbyth for the original code.

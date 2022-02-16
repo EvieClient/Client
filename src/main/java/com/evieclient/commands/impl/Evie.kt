@@ -3,12 +3,9 @@ package com.evieclient.commands.impl
 import com.evieclient.Evie
 import com.evieclient.Evie.chatHandler
 import com.evieclient.commands.BaseCommand
-import com.evieclient.modules.hud.HUDConfigScreen
-import com.evieclient.modules.impl.qol.Chat
 import com.evieclient.utils.chat.ChatColor
 import net.minecraft.client.Minecraft
 import net.minecraft.util.ChatComponentText
-import net.minecraft.util.IChatComponent
 import java.util.*
 
 
