@@ -12,7 +12,10 @@ class AutoGG :
     fun onGameEnd(event: ChatReceivedEvent?) {
         if (!Minecraft.getMinecraft().isSingleplayer) {
             if (event?.toString()?.matches(Regex("^ +1st Killer - ?\\[?\\w*\\+*\\]? \\w+ - \\d+(?: Kills?)?$")) == true) {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("GG")
+                Minecraft.getMinecraft().thePlayer.sendChatMessage("gg")
+            }
+            if (event?.toString()?.matches(Regex("^Match Details \\(click name to view\\)$")) == true) {
+                Minecraft.getMinecraft().thePlayer.sendChatMessage("gg")
             }
         }
     }
