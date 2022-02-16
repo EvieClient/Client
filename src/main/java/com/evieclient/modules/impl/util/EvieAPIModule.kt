@@ -12,6 +12,7 @@ class EvieAPIModule :
     fun onWorldLoad(event: LoadWorldEvent?) {
         if (!Minecraft.getMinecraft().isSingleplayer) {
             // start receiving plugin messages
+
         }
     }
 }

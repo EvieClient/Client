@@ -16,7 +16,8 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.multiplayer.ServerData;
 
-public class DiscordRPModule extends Module {
+public class
+DiscordRPModule extends Module {
 
     @Getter
     private boolean running = false;
