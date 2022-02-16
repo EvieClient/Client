@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SoundManager.class)
-public class MixinSoundManager {
+abstract public class MixinSoundManager {
 
     /**
      * Post {@link PlaySoundEvent} when sound is played on client.

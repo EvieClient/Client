@@ -1,7 +1,10 @@
 package com.evieclient.modules.hud;
 
+import com.evieclient.utils.shader.GLRenderer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Mouse;
+import java.awt.Color;
 
 public class DraggableComponent {
 
@@ -76,6 +79,20 @@ public class DraggableComponent {
             this.x = mouseX + this.lastX;
             this.y = mouseY + this.lastY;
             if (!Mouse.isButtonDown(0)) this.dragging = false;
+
+            if (!Mouse.isButtonDown(0)) {
+                int gridSize = 10;
+                int x = this.getxPosition();
+                int y = this.getyPosition();
+                int xSnap = x % gridSize;
+                int ySnap = y % gridSize;
+                if (xSnap > gridSize / 2) x += gridSize - xSnap;
+                else x -= xSnap;
+                if (ySnap > gridSize / 2) y += gridSize - ySnap;
+                else y -= ySnap;
+                this.setxPosition(x);
+                this.setyPosition(y);
+            }
         }
     }
 }

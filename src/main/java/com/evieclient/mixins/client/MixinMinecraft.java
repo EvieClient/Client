@@ -10,6 +10,8 @@ import com.evieclient.events.impl.world.LoadWorldEvent;
 import com.evieclient.events.impl.world.SinglePlayerJoinEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.profiler.IPlayerUsage;
+import net.minecraft.util.IThreadListener;
 import net.minecraft.world.WorldSettings;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * @since 1.0.0
  **/
 @Mixin(Minecraft.class)
-public class MixinMinecraft {
+abstract public class MixinMinecraft implements IThreadListener, IPlayerUsage {
 
     /**
      * Post {@link Evie} start.

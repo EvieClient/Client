@@ -20,7 +20,7 @@ class CPS : RenderModule("CPS", "View your CPS", Category.INFO, true) {
                 clicks.add(lastPressed)
             }
         }
-        fr.drawStringWithShadow("$cPS", x.toFloat(), y.toFloat(), -1)
+        fr.drawStringWithShadow("$cPS CPS", x.toFloat(), y.toFloat(), -1)
     }
 
     private val cPS: Int
@@ -31,7 +31,7 @@ class CPS : RenderModule("CPS", "View your CPS", Category.INFO, true) {
         }
 
     override fun getWidth(): Int {
-        return fr.getStringWidth("123")
+        return fr.getStringWidth("12 CPS")
     }
 
     override fun getHeight(): Int {
