@@ -17,7 +17,7 @@ class TexturedCape(id: String) {
     }
 
     private fun getCapeTexture(id: String): ResourceLocation? {
-        val textureUrl = "http://users.restapi.evie.pw/api/getCapeTexture?id=$id"
+        val textureUrl = "http://172.105.171.202:3000/api/getCapeTexture?id=$id"
         val url = URL(textureUrl)
         val bufferedImage: BufferedImage
         bufferedImage = try {
