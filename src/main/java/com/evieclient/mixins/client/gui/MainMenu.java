@@ -16,7 +16,7 @@ public abstract class MainMenu extends GuiScreen implements GuiYesNoCallback {
         EvieGuiScreen.renderBackgroundImage();
         drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
         // credits
-        mc.fontRendererObj.drawString(("EvieClient Private Beta (" + Evie.COMMIT_HASH + ")", 0 + 3, this.height - 25, -1);
+        mc.fontRendererObj.drawString("EvieClient Private Beta (" + Evie.COMMIT_HASH + ")", 0 + 3, this.height - 25, -1);
         mc.fontRendererObj.drawString("Copyright Mojang AB. Do not distribute!", 0 + 3, this.height - 15, -1);
 
         //        x: Int,
