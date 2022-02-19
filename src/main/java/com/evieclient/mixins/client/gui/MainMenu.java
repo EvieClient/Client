@@ -36,10 +36,10 @@ public abstract class MainMenu extends GuiScreen implements GuiYesNoCallback {
         super.initGui();
 
         // centred buttons using vanilla code
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 48, "1player + lan if you still do that"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 72, "World-Wide-Web"));
-        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height / 4 + 96, "Windows Control Panel"));
-        this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 120, "Evie.stopClient(this)"));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 48, "Singleplayer"));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 72, "Multiplayer"));
+        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height / 4 + 96, "Settings"));
+        this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 120, "Exit"));
     }
 
     @Override
