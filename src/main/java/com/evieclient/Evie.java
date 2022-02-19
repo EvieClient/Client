@@ -13,6 +13,7 @@ import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
 import com.evieclient.utils.chat.ChatHandler;
+import com.evieclient.utils.ui.EvieLogo;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
@@ -36,6 +37,7 @@ public class Evie {
     public static Minecraft mc = Minecraft.getMinecraft();
     public static ChatHandler chatHandler = new ChatHandler();
     public static EvieCommandHandler commandHandler = new EvieCommandHandler();
+    public static final EvieLogo evieLogo = new EvieLogo();
 
     // Module Manager
     public static ModuleManager MODULE_MANAGER = null;
@@ -167,7 +169,7 @@ public class Evie {
     // Open HUD Config Screen
     @EventSubscriber
     public void onRshift(KeyPressedEvent e) {
-        if (e.getKeyCode() == Keyboard.KEY_RSHIFT) {
+        if(Minecraft.getMinecraft().currentScreen == null && e.getKeyCode() == Keyboard.KEY_RSHIFT) {
             Minecraft.getMinecraft().displayGuiScreen(new HUDConfigScreen());
         }
     }
@@ -186,20 +188,6 @@ public class Evie {
                 Minecraft.getMinecraft().thePlayer.addChatMessage(
                         new ChatComponentText("§a§l[§f§lEvie§a§l] §fDisabled Old Animations!"));
             }
-        }
-    }
-
-    @EventSubscriber
-    public void Music(KeyPressedEvent e) {
-        if (Minecraft.getMinecraft().thePlayer == null) return;
-        if (e.getKeyCode() == Keyboard.KEY_LEFT) {
-            Minecraft.getMinecraft().thePlayer.playSound("note.bd", 1.0F, 1.0F);
-        }
-        if (e.getKeyCode() == Keyboard.KEY_DOWN) {
-            Minecraft.getMinecraft().thePlayer.playSound("note.snare", 1.0F, 1.0F);
-        }
-        if (e.getKeyCode() == Keyboard.KEY_RIGHT) {
-            Minecraft.getMinecraft().thePlayer.playSound("note.hat", 1.0F, 1.0F);
         }
     }
 }
