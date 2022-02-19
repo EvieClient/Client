@@ -5,10 +5,9 @@ import com.evieclient.events.bus.EventSubscriber;
 import com.evieclient.events.impl.client.ChatReceivedEvent;
 import com.evieclient.modules.Category;
 import com.evieclient.modules.Module;
-import kotlin.text.Regex;
 import net.minecraft.client.Minecraft;
 
-public class AutoGG extends Module
+public class AutoGG extends Module {
 
 public AutoGG() {
         super("AutoGG", "Automatically says GG in the chat after a game on Hypixel.", Category.UTIL, true);

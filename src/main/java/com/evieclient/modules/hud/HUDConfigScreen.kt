@@ -13,14 +13,6 @@ class HUDConfigScreen : GuiScreen() {
     private val evieLogo = EvieLogo()
     private val blurShader = BlurShader()
 
-    override fun onGuiClosed() {
-        blurShader.stop()
-    }
-
-    override fun initGui() {
-        blurShader.start()
-    }
-
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
 
        // make a button that will open the config screen
