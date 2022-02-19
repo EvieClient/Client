@@ -11,7 +11,6 @@ import java.awt.Color
 class HUDConfigScreen : GuiScreen() {
 
     private val evieLogo = EvieLogo()
-    private val blurShader = BlurShader()
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
 
