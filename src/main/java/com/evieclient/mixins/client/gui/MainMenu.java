@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
-abstract public class MainMenu extends GuiScreen {
+public abstract class MainMenu extends GuiScreen {
     @Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiMainMenu;drawString(Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V", shift = At.Shift.AFTER))
     public void drawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         EvieGuiScreen.renderBackgroundImage();
