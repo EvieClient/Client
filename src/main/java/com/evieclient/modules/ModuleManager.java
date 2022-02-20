@@ -10,6 +10,7 @@ import com.evieclient.modules.impl.improvements.OldAnimations;
 import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.modules.impl.util.DiscordRPModule;
 import com.evieclient.modules.impl.util.WindowedFullscreenModule;
+import com.evieclient.utils.saving.Save;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.newdawn.slick.SlickException;
 
@@ -57,6 +58,7 @@ public class ModuleManager {
         this.modules.add(keystrokes);
         this.modules.add(armorStatus);
         this.modules.add(cps);
+        Save.INSTANCE.loadConfig();
     }
 
     /**

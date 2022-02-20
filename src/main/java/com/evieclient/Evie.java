@@ -130,7 +130,6 @@ public class Evie {
     // Post Launch
     public void postInitialisation() {
         MODULE_MANAGER.preInitialisation();
-        Save.INSTANCE.loadConfig();
         Evie.EVENT_BUS.register(this);
 
         MODULE_MANAGER.reachDisplay.toggle();
