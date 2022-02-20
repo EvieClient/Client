@@ -1,6 +1,7 @@
 package com.evieclient.commands
 
 import com.evieclient.commands.impl.Evie
+import com.evieclient.commands.impl.GetLogs
 import java.util.*
 
 /**
@@ -14,6 +15,7 @@ class CommandManager {
     // Settings file used to save setting states.
     val commands = ArrayList<BaseCommand>()
     val evie = Evie()
+    val getLogs = GetLogs()
 
     /**
      * Constructor to created ModuleManager.
@@ -29,5 +31,6 @@ class CommandManager {
     // Add all modules here.
     private fun preInitialisation() {
         commands.add(evie);
+        commands.add(getLogs);
     }
 }

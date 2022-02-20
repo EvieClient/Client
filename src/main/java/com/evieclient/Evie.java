@@ -24,7 +24,9 @@ import org.newdawn.slick.SlickException;
 import java.awt.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Evie {
     // Constants
@@ -39,6 +41,7 @@ public class Evie {
     public static ChatHandler chatHandler = new ChatHandler();
     public static EvieCommandHandler commandHandler = new EvieCommandHandler();
     public static final UIUtils evieLogo = new UIUtils();
+    public static List<String> logs = new ArrayList<String>();
 
     // Module Manager
     public static ModuleManager MODULE_MANAGER = null;
@@ -84,8 +87,10 @@ public class Evie {
      * @param message any string to be displayed in console.
      **/
     public static void log(String... message) {
-        for (String out : message)
+        for (String out : message) {
             System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie/" + getCallerClassName() + "] " + out);
+            logs.add("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie/" + getCallerClassName() + "] " + out);
+        }
     }
 
     public static String getCallerClassName() {

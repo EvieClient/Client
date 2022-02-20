@@ -26,6 +26,7 @@ object Save {
         } catch (e: Throwable) {
             Sentry.captureException(e)
             e.printStackTrace()
+            Evie.logs.add("Failed to save config $e")
         }
     }
 
@@ -55,6 +56,7 @@ object Save {
         } catch (e: Throwable) {
             Sentry.captureException(e)
             e.printStackTrace()
+            Evie.logs.add("Failed to load config $e")
         }
         return;
     }
@@ -86,5 +88,7 @@ object Save {
         }
         writer.endObject()
         writer.endObject()
+
+        Evie.log("Saved config with ${modules.size} modules and ${renderModules.size} render modules")
     }
 }
