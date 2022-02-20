@@ -17,11 +17,6 @@ object Save {
         try {
             val file = File(Evie.evieDir, "toggle.json")
             if (!file.exists()) {
-                Evie.MODULE_MANAGER.reachDisplay.toggle()
-                Evie.MODULE_MANAGER.keystrokes.toggle()
-                Evie.MODULE_MANAGER.armorStatus.toggle()
-                Evie.MODULE_MANAGER.cps.toggle()
-                Evie.MODULE_MANAGER.autoGG.toggle()
                 file.parentFile.mkdirs()
                 file.createNewFile()
             }
@@ -57,6 +52,12 @@ object Save {
                         module.y = it.value.asJsonObject.get("y").asInt
                     }
                 }
+            } else {
+                Evie.MODULE_MANAGER.reachDisplay.toggle()
+                Evie.MODULE_MANAGER.keystrokes.toggle()
+                Evie.MODULE_MANAGER.armorStatus.toggle()
+                Evie.MODULE_MANAGER.cps.toggle()
+                Evie.MODULE_MANAGER.autoGG.toggle()
             }
         } catch (e: Throwable) {
             Sentry.captureException(e)
