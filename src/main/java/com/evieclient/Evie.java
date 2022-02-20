@@ -13,6 +13,7 @@ import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
 import com.evieclient.utils.chat.ChatHandler;
+import com.evieclient.utils.saving.Save;
 import com.evieclient.utils.ui.UIUtils;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
@@ -129,6 +130,7 @@ public class Evie {
     // Post Launch
     public void postInitialisation() {
         MODULE_MANAGER.preInitialisation();
+        Save.INSTANCE.loadConfig();
         Evie.EVENT_BUS.register(this);
 
         MODULE_MANAGER.reachDisplay.toggle();

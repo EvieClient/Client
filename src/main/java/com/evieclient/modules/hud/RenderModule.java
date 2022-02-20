@@ -43,6 +43,14 @@ public class RenderModule extends Module {
         return drag.getyPosition();
     }
 
+    public void setX(int x) {
+        drag.setxPosition(x);
+    }
+
+    public void setY(int y) {
+        drag.setyPosition(y);
+    }
+
     public int getWidth() {
         return 0;
     }

@@ -1,8 +1,8 @@
 package com.evieclient.utils.saving
 
 import com.evieclient.Evie
+import com.evieclient.modules.Module
 import com.evieclient.modules.hud.RenderModule
-import com.google.gson.JsonObject
 import java.io.FileWriter
 import com.google.gson.JsonParser
 import com.google.gson.stream.JsonWriter
@@ -29,30 +29,39 @@ object Save {
         }
     }
 
-    fun loadConfig(): JsonObject? {
+    fun loadConfig() {
         try {
             val file = File(Evie.evieDir, "toggle.json")
             if (file.exists()) {
-                return readJson(file);
+                val reader = JsonParser().parse(FileReader(file))
+                val jsonObject = reader.asJsonObject
+                jsonObject.getAsJsonObject("modules").entrySet().forEach {
+                    val jsonElement = it.key
+                    val module = Evie.MODULE_MANAGER.modules.find { it.name == jsonElement }
+                    if (module != null) {
+                        module.enabled = it.value.asBoolean
+                    }
+                }
+                jsonObject.getAsJsonObject("render").entrySet().forEach {
+                    val jsonElement = it.key
+                    val module = Evie.MODULE_MANAGER.renderModuleList.find { it.name == jsonElement }
+                    if (module != null) {
+                        module.enabled = it.value.asJsonObject.get("enabled").asBoolean
+                        module.x = it.value.asJsonObject.get("x").asInt
+                        module.y = it.value.asJsonObject.get("y").asInt
+                    }
+                }
             }
         } catch (e: Throwable) {
             Sentry.captureException(e)
             e.printStackTrace()
         }
-        return null;
-    }
-
-    @Throws(Throwable::class)
-    fun readJson(file: File?): JsonObject {
-        val parser = JsonParser()
-        var json = parser.parse(FileReader(file)).asJsonObject
-        json = json.getAsJsonObject("modules")
-        return json
+        return;
     }
 
     @Throws(IOException::class)
     fun writeJson(writer: JsonWriter) {
-        val modules: MutableList<com.evieclient.modules.Module> = mutableListOf()
+        val modules: MutableList<Module> = mutableListOf()
         val renderModules: MutableList<RenderModule> = mutableListOf()
 
         writer.beginObject()
