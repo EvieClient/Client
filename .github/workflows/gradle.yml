@@ -38,12 +38,9 @@ jobs:
         with:
           path: "build/libs/EvieClient-1.0.0_obf.jar"
           destination: "teamevieclient.appspot.com/1.8/"
-      - name: Set outputs
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - name: Discord Release Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'A new version of Evie Client({{ steps.vars.outputs.sha_short }}) has been deployed to the update server.'
+          args: 'A new version of Evie Client has been deployed to the update server.'
