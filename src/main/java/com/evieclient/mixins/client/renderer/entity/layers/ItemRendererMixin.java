@@ -24,40 +24,55 @@ import static net.minecraft.init.Items.filled_map;
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
 
-    @Shadow @Final private Minecraft mc;
-    @Shadow private float prevEquippedProgress;
-    @Shadow private float equippedProgress;
-    @Shadow private ItemStack itemToRender;
+    @Shadow
+    @Final
+    private Minecraft mc;
+    @Shadow
+    private float prevEquippedProgress;
+    @Shadow
+    private float equippedProgress;
+    @Shadow
+    private ItemStack itemToRender;
+
     /**
      * @author twisttaan
      * Use mixins instead of casting.
      */
     @Shadow
-    private void renderItemMap(AbstractClientPlayer clientPlayer, float pitch, float equipmentProgress, float swingProgress) {}
+    private void renderItemMap(AbstractClientPlayer clientPlayer, float pitch, float equipmentProgress, float swingProgress) {
+    }
 
     @Shadow
-    private void rotateArroundXAndY(float angle, float angleY) {}
+    private void rotateArroundXAndY(float angle, float angleY) {
+    }
 
     @Shadow
-    private void setLightMapFromPlayer(AbstractClientPlayer clientPlayer) {}
+    private void setLightMapFromPlayer(AbstractClientPlayer clientPlayer) {
+    }
 
     @Shadow
-    private void rotateWithPlayerRotations(EntityPlayerSP entityplayerspIn, float partialTicks) {}
+    private void rotateWithPlayerRotations(EntityPlayerSP entityplayerspIn, float partialTicks) {
+    }
 
     @Shadow
-    private void doBlockTransformations() {}
+    private void doBlockTransformations() {
+    }
 
     @Shadow
-    private void doBowTransformations(float partialTicks, AbstractClientPlayer clientPlayer) {}
+    private void doBowTransformations(float partialTicks, AbstractClientPlayer clientPlayer) {
+    }
 
     @Shadow
-    private void doItemUsedTransformations(float swingProgress) {}
+    private void doItemUsedTransformations(float swingProgress) {
+    }
 
     @Shadow
-    private void renderPlayerArm(AbstractClientPlayer clientPlayer, float equipProgress, float swingProgress) {}
+    private void renderPlayerArm(AbstractClientPlayer clientPlayer, float equipProgress, float swingProgress) {
+    }
 
     @Shadow
-    private void performDrinking(AbstractClientPlayer clientPlayer, float partialTicks) {}
+    private void performDrinking(AbstractClientPlayer clientPlayer, float partialTicks) {
+    }
 
     @Shadow
     public abstract void renderItem(EntityLivingBase entityIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform);
@@ -103,7 +118,7 @@ public abstract class ItemRendererMixin {
     private void attemptSwing() {
         if (mc.thePlayer.getItemInUseCount() > 0) {
             boolean mouseDown = mc.gameSettings.keyBindAttack.isKeyDown() && mc.gameSettings.keyBindUseItem.isKeyDown();
-            if (mouseDown ){//&& mc.objectMouseOver != null && mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+            if (mouseDown) {//&& mc.objectMouseOver != null && mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
                 swingItem(mc.thePlayer);
             }
         }
@@ -144,7 +159,7 @@ public abstract class ItemRendererMixin {
                 } else if (player.getItemInUseCount() > 0) {
                     EnumAction action = itemToRender.getItemUseAction();
 
-                    if (action == EnumAction.DRINK){
+                    if (action == EnumAction.DRINK) {
                         performDrinking(player, partialTicks);
                         if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
                             transformFirstPersonItem(equipProgress, swingProgress);
@@ -152,11 +167,10 @@ public abstract class ItemRendererMixin {
                             transformFirstPersonItem(equipProgress, 0.0F);
                         }
                     } else if (action == EnumAction.EAT) {
+                        performDrinking(player, partialTicks);
                         if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
                             transformFirstPersonItem(equipProgress, swingProgress);
-                            doItemUsedTransformations(swingProgress);
                         } else {
-                            doItemUsedTransformations(swingProgress);
                             transformFirstPersonItem(equipProgress, 0.0F);
                         }
                     } else if (action == EnumAction.BLOCK) {
@@ -173,16 +187,15 @@ public abstract class ItemRendererMixin {
                         transformFirstPersonItem(equipProgress, 0.0F);
                         doBowTransformations(partialTicks, player);
                     }
+
                 } else {
                     doItemUsedTransformations(swingProgress);
                     transformFirstPersonItem(equipProgress, swingProgress);
                 }
-
                 renderItem(player, itemToRender, ItemCameraTransforms.TransformType.FIRST_PERSON);
             } else if (!player.isInvisible()) {
                 renderPlayerArm(player, equipProgress, swingProgress);
             }
-
             GlStateManager.popMatrix();
             GlStateManager.disableRescaleNormal();
             RenderHelper.disableStandardItemLighting();
