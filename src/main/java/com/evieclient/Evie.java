@@ -10,10 +10,8 @@ import com.evieclient.events.impl.client.input.KeyPressedEvent;
 import com.evieclient.modules.ModuleManager;
 import com.evieclient.modules.hud.HUDConfigScreen;
 import com.evieclient.utils.api.Capes;
-import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
 import com.evieclient.utils.chat.ChatHandler;
-import com.evieclient.utils.saving.Save;
 import com.evieclient.utils.ui.UIUtils;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
@@ -42,6 +40,7 @@ public class Evie {
     public static EvieCommandHandler commandHandler = new EvieCommandHandler();
     public static final UIUtils evieLogo = new UIUtils();
     public static List<String> logs = new ArrayList<String>();
+
 
     // Module Manager
     public static ModuleManager MODULE_MANAGER = null;
@@ -89,7 +88,10 @@ public class Evie {
     public static void log(String... message) {
         for (String out : message) {
             System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie/" + getCallerClassName() + "] " + out);
-            logs.add("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie/" + getCallerClassName() + "] " + out);
+            try {
+                logs.add("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Evie/" + getCallerClassName() + "] " + out);
+            } catch (Exception ignored) {
+            }
         }
     }
 
@@ -136,12 +138,6 @@ public class Evie {
     public void postInitialisation() {
         MODULE_MANAGER.preInitialisation();
         Evie.EVENT_BUS.register(this);
-
-        MODULE_MANAGER.reachDisplay.toggle();
-        MODULE_MANAGER.keystrokes.toggle();
-        MODULE_MANAGER.armorStatus.toggle();
-        MODULE_MANAGER.cps.toggle();
-        MODULE_MANAGER.autoGG.toggle();
     }
 
     @EventSubscriber

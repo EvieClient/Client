@@ -3,12 +3,12 @@ package com.evieclient.utils.saving
 import com.evieclient.Evie
 import com.evieclient.modules.Module
 import com.evieclient.modules.hud.RenderModule
-import java.io.FileWriter
 import com.google.gson.JsonParser
 import com.google.gson.stream.JsonWriter
 import io.sentry.Sentry
 import java.io.File
 import java.io.FileReader
+import java.io.FileWriter
 import java.io.IOException
 
 object Save {
@@ -17,6 +17,11 @@ object Save {
         try {
             val file = File(Evie.evieDir, "toggle.json")
             if (!file.exists()) {
+                Evie.MODULE_MANAGER.reachDisplay.toggle()
+                Evie.MODULE_MANAGER.keystrokes.toggle()
+                Evie.MODULE_MANAGER.armorStatus.toggle()
+                Evie.MODULE_MANAGER.cps.toggle()
+                Evie.MODULE_MANAGER.autoGG.toggle()
                 file.parentFile.mkdirs()
                 file.createNewFile()
             }

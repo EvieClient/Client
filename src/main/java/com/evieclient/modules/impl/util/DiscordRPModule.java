@@ -38,7 +38,6 @@ DiscordRPModule extends Module {
                     // separate the secret from the IP
                     String[] split = JoinSecret.split("-");
                     String ip = split[0];
-
                     Evie.log("Joined server: " + ip);
                     // join the server
                     //Minecraft.getMinecraft().displayGuiScreen(new GuiMultiplayer(new NetHandlerPlayClient(Minecraft.getMinecraft().getSession().getProfile(), new ServerData(ip, "Evie Client", ip), Minecraft.getMinecraft().getCurrentServerData())));
