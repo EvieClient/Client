@@ -10,6 +10,7 @@ import com.evieclient.modules.impl.improvements.OldAnimations;
 import com.evieclient.modules.impl.util.AccountsModule;
 import com.evieclient.modules.impl.util.DiscordRPModule;
 import com.evieclient.modules.impl.util.WindowedFullscreenModule;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.newdawn.slick.SlickException;
 
 import java.awt.*;
@@ -70,6 +71,16 @@ public class ModuleManager {
         return this.modules.size();
     }
 
+    public ArrayList<Module> getModuleList() {
+        ArrayList<Module> normModules = new ArrayList<>();
+        for (Module module : modules) {
+            if (!module.isRenderModule()) {
+                normModules.add(module);
+            }
+        }
+        return normModules;
+    }
+
     public ArrayList<RenderModule> getRenderModuleList() {
         ArrayList<RenderModule> renderModules = new ArrayList<>();
         for (Module module : modules) {
@@ -83,7 +94,7 @@ public class ModuleManager {
 
     public void renderHook() {
         for (RenderModule m : getRenderModuleList()) {
-            if (m.isEnabled()) {
+            if (m.getEnabled()) {
                 m.render();
             }
         }

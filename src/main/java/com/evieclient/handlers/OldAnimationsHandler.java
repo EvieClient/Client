@@ -36,7 +36,7 @@ public class OldAnimationsHandler {
             }
             Label_0327:
             if (entitylivingbaseIn instanceof EntityPlayer) {
-                if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) {
+                if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) {
                     if (((EntityPlayer) entitylivingbaseIn).isBlocking()) {
                         if (entitylivingbaseIn.isSneaking()) {
                             ((ModelBiped) livingEntityRenderer.getMainModel()).postRenderArm(0.0325f);
@@ -59,11 +59,11 @@ public class OldAnimationsHandler {
                     ((ModelBiped) livingEntityRenderer.getMainModel()).postRenderArm(0.0625f);
                 }
 
-                if (!Evie.MODULE_MANAGER.oldAnimations.isEnabled()) {
+                if (!Evie.MODULE_MANAGER.oldAnimations.getEnabled()) {
                     GlStateManager.translate(-0.0625f, 0.4375f, 0.0625f);
                 } else {
                     if (!((EntityPlayer) entitylivingbaseIn).isBlocking()) {
-                        if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) {
+                        if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) {
                             GlStateManager.translate(-0.0855f, 0.4775f, 0.1585f);
                             GlStateManager.rotate(-19.0f, 20.0f, 0.0f, -6.0f);
                             break Label_0327;

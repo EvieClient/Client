@@ -13,7 +13,7 @@ import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.EviePlayers;
 import com.evieclient.utils.api.SocketClient;
 import com.evieclient.utils.chat.ChatHandler;
-import com.evieclient.utils.ui.EvieLogo;
+import com.evieclient.utils.ui.UIUtils;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
@@ -37,7 +37,7 @@ public class Evie {
     public static Minecraft mc = Minecraft.getMinecraft();
     public static ChatHandler chatHandler = new ChatHandler();
     public static EvieCommandHandler commandHandler = new EvieCommandHandler();
-    public static final EvieLogo evieLogo = new EvieLogo();
+    public static final UIUtils evieLogo = new UIUtils();
 
     // Module Manager
     public static ModuleManager MODULE_MANAGER = null;
@@ -178,7 +178,6 @@ public class Evie {
     @EventSubscriber
     public void OnL(KeyPressedEvent e) {
         if (e.getKeyCode() == Keyboard.KEY_L) {
-            Evie.log(EviePlayers.Companion.getPlayers().size() + "");
             boolean enabled = MODULE_MANAGER.oldAnimations.toggle();
 
             if (enabled) {

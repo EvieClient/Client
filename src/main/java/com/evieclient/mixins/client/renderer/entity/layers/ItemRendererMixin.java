@@ -70,22 +70,22 @@ public abstract class ItemRendererMixin {
     private void transformFirstPersonItem(float equipProgress, float swingProgress) {
         if (mc != null && mc.thePlayer != null && mc.thePlayer.getItemInUse() != null && mc.thePlayer.getItemInUse().getItem() != null
                 && Item.getIdFromItem(mc.thePlayer.getItemInUse().getItem()) == 261) { // bow id
-            if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) { // old bow position
+            if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // old bow position
                 GlStateManager.translate(0.0f, 0.05f, 0.04f);
             }
 
-            if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) { // old bow scale
+            if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // old bow scale
                 GlStateManager.scale(0.93f, 1.0f, 1.0f);
             }
         }
 
         if (mc != null && mc.thePlayer != null && mc.thePlayer.getCurrentEquippedItem() != null && mc.thePlayer.getCurrentEquippedItem().getItem() != null
                 && Item.getIdFromItem(mc.thePlayer.getCurrentEquippedItem().getItem()) == 346) { // rod id
-            if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) { // old rod position
+            if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // old rod position
                 GlStateManager.translate(0.08f, -0.027f, -0.33f);
             }
 
-            if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) { // old rod scale
+            if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // old rod scale
                 GlStateManager.scale(0.93f, 1.0f, 1.0f);
             }
         }
@@ -146,13 +146,13 @@ public abstract class ItemRendererMixin {
 
                     if (action == EnumAction.DRINK){
                         performDrinking(player, partialTicks);
-                        if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
+                        if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
                             transformFirstPersonItem(equipProgress, swingProgress);
                         } else {
                             transformFirstPersonItem(equipProgress, 0.0F);
                         }
                     } else if (action == EnumAction.EAT) {
-                        if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
+                        if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
                             transformFirstPersonItem(equipProgress, swingProgress);
                             doItemUsedTransformations(swingProgress);
                         } else {
@@ -160,7 +160,7 @@ public abstract class ItemRendererMixin {
                             transformFirstPersonItem(equipProgress, 0.0F);
                         }
                     } else if (action == EnumAction.BLOCK) {
-                        if (Evie.MODULE_MANAGER.oldAnimations.isEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
+                        if (Evie.MODULE_MANAGER.oldAnimations.getEnabled()) { // TODO: When a config system is implemented, this should be moved to the config
                             transformFirstPersonItem(equipProgress, swingProgress);
                             doBlockTransformations();
                             GlStateManager.scale(0.83f, 0.88f, 0.85f);

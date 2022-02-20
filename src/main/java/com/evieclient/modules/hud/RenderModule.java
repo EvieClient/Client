@@ -27,7 +27,12 @@ public class RenderModule extends Module {
         } catch (Exception e) {
             Sentry.captureException(e);
         }
-        if (this.isEnabled()) Evie.EVENT_BUS.register(this);
+        if (this.getEnabled()) Evie.EVENT_BUS.register(this);
+    }
+
+    @Override
+    public boolean isRenderModule() {
+        return true;
     }
 
     public int getX() {

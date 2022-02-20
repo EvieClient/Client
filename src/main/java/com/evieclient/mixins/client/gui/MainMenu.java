@@ -4,7 +4,6 @@ import com.evieclient.Evie;
 import com.evieclient.utils.render.EvieGuiScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.resources.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ public abstract class MainMenu extends GuiScreen implements GuiYesNoCallback {
 
         // using  Evie.evieLogo.draw(x, y, width);
         int logoWidth = buttonList.get(0).getButtonWidth() / 2;
-        Evie.evieLogo.draw(this.width / 2 - logoWidth / 2, this.height / 6 - logoWidth / 2, logoWidth);
+        Evie.evieLogo.drawEvieLogo(this.width / 2 - logoWidth / 2, this.height / 6 - logoWidth / 2, logoWidth);
 
 
         super.drawScreen(mouseX, mouseY, partialTicks);

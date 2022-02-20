@@ -26,7 +26,6 @@ class Capes {
         }
 
         return if (EviePlayers.getPlayer(player.name)?.cosmetics?.activeCosmetics?.cape?.dynamicCapeTexture != null) {
-            // Evie.log("Capes: Found cape texture for ${player.name}")
             renderCape(
                 playerRenderer,
                 player,
