@@ -12,6 +12,8 @@ import com.evieclient.modules.hud.HUDConfigScreen;
 import com.evieclient.utils.api.Capes;
 import com.evieclient.utils.api.SocketClient;
 import com.evieclient.utils.chat.ChatHandler;
+import com.evieclient.utils.render.FontRenderer;
+import com.evieclient.utils.ui.EvieText;
 import com.evieclient.utils.ui.UIUtils;
 import io.sentry.Sentry;
 import net.minecraft.client.Minecraft;
