@@ -10,8 +10,8 @@ public class OldAnimations extends Module {
     }
 
     @Override
-    public OldAnimations setupModule() {
+    public void setupModule() {
      //   Evie.EVENT_BUS.register(new AnimationEventHandler());
-        return this;
+        return;
     }
 }

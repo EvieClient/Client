@@ -98,8 +98,8 @@ open class Module @JvmOverloads constructor(
      * @see .moduleSetup
      * @return*/
 
-    open fun setupModule(): OldAnimations? {
-        return null
+    open fun setupModule() {
+        return;
     }
 
     /**

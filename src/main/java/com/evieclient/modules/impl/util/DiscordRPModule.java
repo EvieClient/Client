@@ -6,15 +6,19 @@ import com.evieclient.events.impl.client.GameLoopEvent;
 import com.evieclient.events.impl.world.LoadWorldEvent;
 import com.evieclient.modules.Category;
 import com.evieclient.modules.Module;
-import com.evieclient.modules.impl.improvements.OldAnimations;
+import com.evieclient.utils.api.DownloadNativeLibrary;
+import de.jcm.discordgamesdk.Core;
+import de.jcm.discordgamesdk.CreateParams;
+import de.jcm.discordgamesdk.activity.Activity;
+import io.sentry.Sentry;
 import lombok.Getter;
-import net.arikia.dev.drpc.DiscordEventHandlers;
-import net.arikia.dev.drpc.DiscordRPC;
-import net.arikia.dev.drpc.DiscordRichPresence;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.multiplayer.ServerData;
+
+import java.io.File;
+import java.time.Instant;
 
 public class
 DiscordRPModule extends Module {
@@ -28,32 +32,67 @@ DiscordRPModule extends Module {
     }
 
     @Override
-    public OldAnimations setupModule() {
-        this.created = System.currentTimeMillis();
-        Evie.log("Setting up DRPC");
-        DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
-                    Evie.log("Welcome " + user.username + "#" + user.discriminator + "!");
-                    updateRP("loading..", "", "", "", null);
-                }).setJoinGameEventHandler(JoinSecret -> {
-                    // separate the secret from the IP
-                    String[] split = JoinSecret.split("-");
-                    String ip = split[0];
-                    Evie.log("Joined server: " + ip);
-                    // join the server
-                    //Minecraft.getMinecraft().displayGuiScreen(new GuiMultiplayer(new NetHandlerPlayClient(Minecraft.getMinecraft().getSession().getProfile(), new ServerData(ip, "Evie Client", ip), Minecraft.getMinecraft().getCurrentServerData())));
+    public void setupModule() {
+        try {
+            File discordLibrary = DownloadNativeLibrary.downloadDiscordLibrary();
+            if (discordLibrary == null) {
+                System.err.println("Error downloading Discord SDK.");
+                System.exit(-1);
+            }
+            // Initialize the Core
+            Core.init(discordLibrary);
+        } catch (Exception e) {
+            Sentry.captureException(e);
+        }
 
-                })
-                .build();
-        DiscordRPC.discordInitialize("938249807846322246", handlers, true);
-        new Thread("Discord RPC Callback") {
-            @Override
-            public void run() {
-                while (running) {
-                    DiscordRPC.discordRunCallbacks();
+        // Set parameters for the Core
+        try(CreateParams params = new CreateParams())
+        {
+            params.setClientID(698611073133051974L);
+            params.setFlags(CreateParams.getDefaultFlags());
+            // Create the Core
+            try(Core core = new Core(params))
+            {
+                // Create the Activity
+                try(Activity activity = new Activity())
+                {
+                    activity.setDetails("Running an example");
+                    activity.setState("and having fun");
+
+                    // Setting a start time causes an "elapsed" field to appear
+                    activity.timestamps().setStart(Instant.now());
+
+                    // We are in a party with 10 out of 100 people.
+                    activity.party().size().setMaxSize(100);
+                    activity.party().size().setCurrentSize(10);
+
+                    // Make a "cool" image show up
+                    activity.assets().setLargeImage("test");
+
+                    // Setting a join secret and a party ID causes an "Ask to Join" button to appear
+                    activity.party().setID("Party!");
+                    activity.secrets().setJoinSecret("Join!");
+
+                    // Finally, update the current activity to our activity
+                    core.activityManager().updateActivity(activity);
+                }
+
+                // Run callbacks forever
+                while(true)
+                {
+                    core.runCallbacks();
+                    try
+                    {
+                        // Sleep a bit to save CPU
+                        Thread.sleep(16);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
             }
-        }.start();
-        return null;
+        }
     }
 
     @Override
