@@ -31,20 +31,7 @@ DiscordRPModule extends Module {
     public OldAnimations setupModule() {
         this.created = System.currentTimeMillis();
         Evie.log("Setting up DRPC");
-        DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
-                    Evie.log("Welcome " + user.username + "#" + user.discriminator + "!");
-                    updateRP("loading..", "", "", "", null);
-                }).setJoinGameEventHandler(JoinSecret -> {
-                    // separate the secret from the IP
-                    String[] split = JoinSecret.split("-");
-                    String ip = split[0];
-                    Evie.log("Joined server: " + ip);
-                    // join the server
-                    //Minecraft.getMinecraft().displayGuiScreen(new GuiMultiplayer(new NetHandlerPlayClient(Minecraft.getMinecraft().getSession().getProfile(), new ServerData(ip, "Evie Client", ip), Minecraft.getMinecraft().getCurrentServerData())));
-
-                })
-                .build();
-        DiscordRPC.discordInitialize("938249807846322246", handlers, true);
+        DiscordRPC.discordInitialize("938249807846322246", Evie.DISCORD_EVENT_HANDLERS, true);
         new Thread("Discord RPC Callback") {
             @Override
             public void run() {

@@ -16,6 +16,7 @@ import com.evieclient.utils.render.FontRenderer;
 import com.evieclient.utils.ui.EvieText;
 import com.evieclient.utils.ui.UIUtils;
 import io.sentry.Sentry;
+import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
 import org.lwjgl.input.Keyboard;
@@ -42,6 +43,18 @@ public class Evie {
     public static EvieCommandHandler commandHandler = new EvieCommandHandler();
     public static final UIUtils evieLogo = new UIUtils();
     public static List<String> logs = new ArrayList<String>();
+    public static final DiscordEventHandlers DISCORD_EVENT_HANDLERS = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
+                Evie.log("Welcome " + user.username + "#" + user.discriminator + "!");
+            }).setJoinGameEventHandler(JoinSecret -> {
+                // separate the secret from the IP
+                String[] split = JoinSecret.split("-");
+                String ip = split[0];
+                Evie.log("Joined server: " + ip);
+                // join the server
+                //Minecraft.getMinecraft().displayGuiScreen(new GuiMultiplayer(new NetHandlerPlayClient(Minecraft.getMinecraft().getSession().getProfile(), new ServerData(ip, "Evie Client", ip), Minecraft.getMinecraft().getCurrentServerData())));
+
+            })
+            .build();
 
 
     // Module Manager
